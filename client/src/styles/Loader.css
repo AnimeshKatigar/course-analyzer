@@ -1,0 +1,11 @@
+.loader {
+	text-align: center;
+	margin-top: 1rem;
+}
+.ant-spin{
+	color: #8b13cc !important;
+
+}
+.ant-spin-dot i{
+	background-color: #8b13cc
+}

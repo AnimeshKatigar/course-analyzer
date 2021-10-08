@@ -1,0 +1,56 @@
+.footer {
+	color: #ffffff;
+	background-color: #121212;
+	min-height: 12rem;
+	/* margin-top:-10rem; */
+	/* clip-path: polygon(0 82%, 100% 57%, 100% 100%, 0 100%); */
+	clip-path: polygon(0 66%, 100% 01%, 100% 100%, 0% 100%);
+}
+
+.footer-content {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.footer-links {
+	display: inline-block;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.footer-links a {
+	color: #ffffff;
+}
+
+.footer-links.github {
+	float: right;
+	font-size: 1.2rem;
+}
+
+.social-icon {
+	color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+	.footer {
+		color: #ffffff;
+		background-color: #121212;
+		min-height: 8rem;
+		/* margin-top:-10rem; */
+		/* clip-path: polygon(0 82%, 100% 57%, 100% 100%, 0 100%); */
+		clip-path: polygon(0 95%, 100% 0%, 100% 100%, 0% 100%);
+	
+	}
+  }
+
+  @media screen and (min-width: 1500px) {
+	.footer {
+		color: #ffffff;
+		background-color: #121212;
+		min-height: 15rem;
+		/* margin-top:-10rem; */
+		/* clip-path: polygon(0 82%, 100% 57%, 100% 100%, 0 100%); */
+		clip-path: polygon(0 82%, 100% 0%, 100% 100%, 0% 100%);
+	
+	}
+  }

@@ -1,0 +1,63 @@
+.tutorials-by-tag {
+  min-height: calc(100vh - 4rem);
+  width: 80%;
+  margin: 3rem auto;
+}
+
+.tutorial-title {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.filter-title {
+  color: #a714f7;
+}
+
+.filter {
+  margin: 0.7rem 0;
+}
+
+.filters {
+  margin-top: 20px;
+  background: #1f1f1f;
+  color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 20px 30px;
+}
+
+.ant-checkbox-wrapper{
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #a714f7;
+  border-color: #a714f7 !important;
+}
+
+.ant-checkbox:hover{
+	border-color: #a714f7 !important;
+}
+
+.filter-type {
+  text-align: left;
+  font-weight: 600;
+}
+
+.nothing-matched {
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .tutorial-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .filter-type {
+    text-align: left;
+  }
+}
