@@ -119,7 +119,7 @@ class TutorialForm extends React.Component {
       medium: this.refs.tutorialMedium.state.value,
       platform: this.refs.platform.input.value,
       type: this.refs.tutorialType.state.value,
-	  rating:this.state.rating,
+      rating: this.state.rating,
       skillLevel: this.refs.skillLevel.state.value,
       tags: this.state.tags,
     };
@@ -180,10 +180,10 @@ class TutorialForm extends React.Component {
           <Rating
             initialRating={this.state.rating}
             fractions="2"
-			className="rating-span"
+            className="rating-span"
             emptySymbol="fa fa-star-o fa-2x"
             fullSymbol="fa fa-star fa-2x medium"
-			// quiet
+            // quiet
             onChange={(rate) => this.setState({ rating: rate })}
           />
         </Form.Item>

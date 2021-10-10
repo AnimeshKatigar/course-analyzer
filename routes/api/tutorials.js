@@ -130,7 +130,7 @@ router.post(
       medium,
       platform,
       type,
-	  rating,
+      rating,
       skillLevel,
       tags,
       submittedBy: req.user._id,

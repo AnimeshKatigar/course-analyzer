@@ -15,6 +15,7 @@ import {
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Rating from "react-rating";
 
 import {
   addToFavorites,
@@ -146,6 +147,18 @@ class TutorialCard extends React.Component {
                   {this.props.tutorial.title}
                 </span>
               </Tooltip>
+              {this.props.tutorial.rating > 0 && (
+                <div className="tutorial-info">
+                  <Rating
+                    readonly
+                    initialRating={this.props.tutorial.rating}
+                    fractions="2"
+                    className="rating-span"
+                    emptySymbol="fa fa-star-o fa-1x"
+                    fullSymbol="fa fa-star fa-1x medium"
+                  />
+                </div>
+              )}
             </div>
             <Row gutter={{ sm: 0, md: 4, xl: 8 }}>
               <Col xs={24} sm={24} md={12} xl={8}>

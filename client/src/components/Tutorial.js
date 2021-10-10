@@ -223,20 +223,19 @@ class Tutorial extends React.Component {
             <span className="bold">Submitted By :</span>{" "}
             {tutorial.submittedBy.name}
           </div>
-          {tutorial.rating!=0 &&
-              (
-                <div className="tutorial-info">
-                  <span className="bold">Avg. Rating :</span>{" "}
-                  <Rating
-                    readonly
-                    initialRating={tutorial.rating}
-                    fractions="2"
-                    className="rating-span"
-                    emptySymbol="fa fa-star-o fa-1x"
-                    fullSymbol="fa fa-star fa-1x medium"
-                  />
-                </div>
-              )}
+          {tutorial.rating != 0 && (
+            <div className="tutorial-info">
+              <span className="bold">Avg. Rating :</span>{" "}
+              <Rating
+                readonly
+                initialRating={tutorial.rating}
+                fractions="2"
+                className="rating-span"
+                emptySymbol="fa fa-star-o fa-1x"
+                fullSymbol="fa fa-star fa-1x medium"
+              />
+            </div>
+          )}
 
           <div className="tutorial-info">
             <span className="bold">Submitted On :</span>{" "}
