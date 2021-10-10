@@ -1,7 +1,7 @@
 .tag-card {
   border: none !important;
-  height: 240px;
-  padding: 5px;
+  min-height: 240px;
+  height: auto ;
   margin-bottom: 15px;
   background:#353535;
   cursor: pointer;
@@ -24,7 +24,7 @@
 } */
 
 .tag-card-title {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   margin-bottom: 10px;
   color: rgba(255, 255, 255,1);
   display: flex;
@@ -49,7 +49,7 @@
 
 .tag-card-website .website-link {
   transition-duration: 0.3s;
-  color: #b223ff;
+  color: #d079ff;
 }
 
 .tag-card-website .website-link:hover {

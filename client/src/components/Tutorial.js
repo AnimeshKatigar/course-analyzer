@@ -14,6 +14,7 @@ import {
 import { connect } from "react-redux";
 import moment from "moment";
 import PropTypes from "prop-types";
+import Rating from "react-rating";
 
 import { getTutorial, addReview } from "../actions/tutorialActions";
 import {
@@ -172,6 +173,7 @@ class Tutorial extends React.Component {
               <Col sm={24} md={20}>
                 {tutorial.title}
               </Col>
+
               <Col sm={24} md={4}>
                 <span>
                   {!favorite ? (
@@ -221,6 +223,21 @@ class Tutorial extends React.Component {
             <span className="bold">Submitted By :</span>{" "}
             {tutorial.submittedBy.name}
           </div>
+          {tutorial.rating!=0 &&
+              (
+                <div className="tutorial-info">
+                  <span className="bold">Avg. Rating :</span>{" "}
+                  <Rating
+                    readonly
+                    initialRating={tutorial.rating}
+                    fractions="2"
+                    className="rating-span"
+                    emptySymbol="fa fa-star-o fa-1x"
+                    fullSymbol="fa fa-star fa-1x medium"
+                  />
+                </div>
+              )}
+
           <div className="tutorial-info">
             <span className="bold">Submitted On :</span>{" "}
             {moment(tutorial.submittedOn).format("MMMM DD, YYYY")}

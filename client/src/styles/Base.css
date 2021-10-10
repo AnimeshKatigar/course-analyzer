@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 
 * {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -48,6 +48,11 @@ input:focus, input:checked, input:active, input:focus-within, input:visited, inp
   border-color: #8b13cc !important;
 }
 
+.ant-input-affix-wrapper .ant-input:not(:first-child) {
+  padding-left: 40px;
+  /* border: 1px solid #8e0fd3; */
+}
+
 .ant-btn-primary:hover, .ant-btn-primary:focus{
   background-color: #a714f7;
   color: #fff;
@@ -57,19 +62,19 @@ input:focus, input:checked, input:active, input:focus-within, input:visited, inp
 *::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #f5f5f5;
+  background-color: #222222;
 }
 
 *::-webkit-scrollbar {
   width: 10px;
-  background-color: #f5f5f5;
+  background-color: #222222;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #0787e6;
+  background-color: #7b12b4;
   background: linear-gradient(
     180deg,
-    rgba(7, 135, 230, 1) 0%,
-    rgba(45, 156, 255, 1) 100%
+    #5b018a 0%,
+    #6e00a8 100%
   );
 }

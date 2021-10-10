@@ -82,7 +82,7 @@ class HomePage extends React.Component {
             <Input
               placeholder="Search..."
               size="large"
-              prefix={<AiOutlineSearch color="rgba(255, 255, 255, 0.8)" />}
+              prefix={<AiOutlineSearch color="rgba(255, 255, 255, 0.8)" size="20px"/>}
               value={this.state.search}
               className="searchInput"
               onChange={this.handleChange}

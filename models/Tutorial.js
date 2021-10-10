@@ -59,7 +59,10 @@ const TutorialSchema = new Schema({
   ],
   platform: {
     type: String,
-	default:''
+    default: "",
+  },
+  rating: {
+    type: Number,
   },
   // highlights:[String]
 });
