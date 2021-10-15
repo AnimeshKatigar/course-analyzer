@@ -23,6 +23,7 @@ class TutorialForm extends React.Component {
       rating: 0,
       tutorialDescription: "",
       tagDescription: "",
+      selected: "",
     };
 
     this.openModal = this.openModal.bind(this);
@@ -148,7 +149,13 @@ class TutorialForm extends React.Component {
           <div className="form-label required">Tutorial Title</div>
           <Input type="text" placeholder="Tutorial Title" ref="tutorialTitle" />
         </Form.Item>
-        <CountrySelector />
+        {/* <Form.Item> */}
+          <div className="form-label required" style={{color: 'white',margin:"10px 0px"}}>Language</div>
+          <CountrySelector
+            selected={this.state.selected}
+            onSelect={(state) => this.setState({ selected: state })}
+          />
+        {/* </Form.Item> */}
         <Form.Item>
           <div className="form-label required">Description</div>
           <Input.TextArea
