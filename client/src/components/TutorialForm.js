@@ -3,10 +3,12 @@ import { Form, Input, Button, Radio, Select, Modal, message } from "antd";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Rating from "react-rating";
+import ReactFlagsSelect from "react-flags-select";
 
 import { addTag, getTags } from "../actions/tagActions";
 import { addTutorial } from "../actions/tutorialActions";
 
+import CountrySelector from "./CountrySelector.js";
 import "../styles/TutorialForm.css";
 
 class TutorialForm extends React.Component {
@@ -146,6 +148,7 @@ class TutorialForm extends React.Component {
           <div className="form-label required">Tutorial Title</div>
           <Input type="text" placeholder="Tutorial Title" ref="tutorialTitle" />
         </Form.Item>
+        <CountrySelector />
         <Form.Item>
           <div className="form-label required">Description</div>
           <Input.TextArea

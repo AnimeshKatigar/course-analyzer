@@ -194,6 +194,9 @@ class Tutorial extends React.Component {
                   )}
                 </span>
               </Col>
+              <Col span={24}>
+                <div className="tutorial-info">{tutorial.description}</div>
+              </Col>
             </Row>
           </h1>
           {!upvote ? (
@@ -219,10 +222,10 @@ class Tutorial extends React.Component {
             </Popconfirm>
           )}
           <div className="tutorial-tags">{tags}</div>
-          <div className="tutorial-info">
+          {/* <div className="tutorial-info">
             <span className="bold">Submitted By :</span>{" "}
             {tutorial.submittedBy.name}
-          </div>
+          </div> */}
           {tutorial.rating != 0 && (
             <div className="tutorial-info">
               <span className="bold">Avg. Rating :</span>{" "}
@@ -237,11 +240,10 @@ class Tutorial extends React.Component {
             </div>
           )}
 
-          <div className="tutorial-info">
+          {/* <div className="tutorial-info">
             <span className="bold">Submitted On :</span>{" "}
             {moment(tutorial.submittedOn).format("MMMM DD, YYYY")}
-          </div>
-          {tutorial.platform && <div>Platform {tutorial.platform}</div>}
+          </div> */}
           <Button type="primary">
             <a href={tutorial.link} target="_blank">
               Visit Tutorial
@@ -254,15 +256,19 @@ class Tutorial extends React.Component {
           <div className="tutorial-info">
             <span className="bold">Medium :</span> {tutorial.medium}
           </div>
+          <span className="flag-icon flag-icon-al"></span>
+          {tutorial.platform && (
+            <div className="tutorial-info">
+              <span className="bold">Platform :</span> {tutorial.platform}
+            </div>
+          )}
           <div className="tutorial-info">
             <span className="bold">Type :</span> {tutorial.type}
           </div>
           <div className="tutorial-info">
             <span className="bold">Skill Level :</span> {tutorial.skillLevel}
           </div>
-          <div className="tutorial-info">
-            <span className="bold">Description :</span> {tutorial.description}
-          </div>
+
           <Divider className="divider" />
           <div className="reviews">
             <div className="tutorial-info">

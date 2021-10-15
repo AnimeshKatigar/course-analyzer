@@ -4,6 +4,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+.ant-input{
+  font-family: "Poppins", sans-serif !important;
+}
+
 body {
   /* background: #ebebeb; */
   background: #282828;

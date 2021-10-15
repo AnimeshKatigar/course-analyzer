@@ -26,9 +26,9 @@
   box-shadow: rgb(0 0 0 / 20%) 0px 20px 30px;
 }
 
-.ant-checkbox-wrapper{
+.ant-checkbox-wrapper {
   font-weight: 400;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {
@@ -36,8 +36,8 @@
   border-color: #a714f7 !important;
 }
 
-.ant-checkbox:hover{
-	border-color: #a714f7 !important;
+.ant-checkbox:hover {
+  border-color: #a714f7 !important;
 }
 
 .filter-type {
@@ -48,6 +48,12 @@
 .nothing-matched {
   margin-top: 2rem;
   font-size: 1rem;
+}
+
+@media screen and (max-width: 992px) {
+  .filters {
+    padding: 15px;
+  }
 }
 
 @media screen and (max-width: 768px) {

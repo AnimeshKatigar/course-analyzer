@@ -17,6 +17,7 @@ class Tutorials extends React.Component {
     super(props);
 
     this.state = {
+      recommended: {},
       Video: false,
       Blog: false,
       Free: false,
@@ -80,9 +81,16 @@ class Tutorials extends React.Component {
 
   render() {
     let tutorials;
+    let recommended;
     if (this.props.tutorial.loading || !this.props.tutorial.tutorials) {
       tutorials = <Loader />;
     } else {
+      const mainTutorials = this.props.tutorial.tutorials;
+      // recommended = mainTutorials.reduce((prev, current) =>
+      //   prev.upvotes.length > current.upvotes.length ? prev : current
+      // );
+      recommended=mainTutorials[0]
+      // const remainingTutorials = mainTutorials.filter((tut)=>tut.id != max.id)
       const filteredTutorials = this.props.tutorial.tutorials.filter(
         (tutorial) => {
           if (
@@ -156,6 +164,9 @@ class Tutorials extends React.Component {
           </div>
         );
       } else {
+        {
+          console.log(recommended);
+        }
         tutorials = filteredTutorials.map((tutorial, i) => (
           <Col span={24} key={i}>
             <TutorialCard tutorial={tutorial} />
@@ -177,29 +188,31 @@ class Tutorials extends React.Component {
           >
             <img
               src={
-                this.props.tag.tag.logoLink ? this.props.tag.tag.logoLink : codeImg
+                this.props.tag.tag.logoLink
+                  ? this.props.tag.tag.logoLink
+                  : codeImg
               }
               alt="tag-logo"
               height="30px"
               width="30px"
-              style={{ borderRadius: "50%",marginRight: "5px" }}
+              style={{ borderRadius: "50%", marginRight: "5px" }}
             />
             {this.props.tag.tag.tag}
           </span>{" "}
           Tutorials
         </h1>
         <Row gutter={32}>
-          <Col xs={24} lg={8}>
+          <Col xs={24} md={16} lg={8}>
             <div className="filters">
               <div className="bold filter-title">Filters</div>
               <div className="filter">
                 <Row gutter={8}>
                   {/* <Col xs={24} sm={4} md={3} lg={3} className="filter-type"> */}
-                  <Col xs={24} className="filter-type">
-                    Medium {" "}
+                  <Col xs={24}  className="filter-type">
+                    Medium{" "}
                   </Col>
                   {/* <Col xs={24} sm={7} md={5} lg={4}> */}
-                  <Col xs={24} className="filter-type">
+                  <Col xs={24} sm={7} md={5} lg={24} className="filter-type">
                     <Checkbox
                       checked={this.state.Video}
                       name="Video"
@@ -209,7 +222,7 @@ class Tutorials extends React.Component {
                     </Checkbox>
                   </Col>
                   {/* <Col xs={24} sm={7} md={5} lg={4}> */}
-                  <Col xs={24} className="filter-type">
+                  <Col xs={24} sm={7} md={5} lg={24} className="filter-type">
                     <Checkbox
                       checked={this.state.Blog}
                       name="Blog"
@@ -224,10 +237,10 @@ class Tutorials extends React.Component {
                 <Row gutter={8}>
                   {/* <Col xs={24} sm={4} md={3} lg={3} className="filter-type"> */}
                   <Col xs={24} className="filter-type">
-                    Type {" "}
+                    Type{" "}
                   </Col>
                   {/* <Col xs={24} sm={7} md={5} lg={4}> */}
-                  <Col xs={24} className="filter-type">
+                  <Col xs={24} sm={7} md={5} lg={24} className="filter-type">
                     <Checkbox
                       checked={this.state.Free}
                       name="Free"
@@ -237,7 +250,7 @@ class Tutorials extends React.Component {
                     </Checkbox>
                   </Col>
                   {/* <Col xs={24} sm={7} md={5} lg={4}> */}
-                  <Col xs={24} className="filter-type">
+                  <Col xs={24} sm={7} md={5} lg={24} className="filter-type">
                     <Checkbox
                       checked={this.state.Paid}
                       name="Paid"
@@ -252,9 +265,9 @@ class Tutorials extends React.Component {
                 <Row gutter={8}>
                   {/* <Col xs={24} sm={4} md={3} lg={3} className="filter-type"> */}
                   <Col xs={24} className="filter-type">
-                    Skill Level {" "}
+                    Skill Level{" "}
                   </Col>
-                  <Col xs={24} className="filter-type">
+                  <Col xs={24} sm={7} lg={24} className="filter-type">
                     {/* <Col xs={24} sm={7} md={5} lg={4}> */}
                     <Checkbox
                       checked={this.state.Beginner}
@@ -264,7 +277,7 @@ class Tutorials extends React.Component {
                       Beginner
                     </Checkbox>
                   </Col>
-                  <Col xs={24} className="filter-type">
+                  <Col xs={24} sm={8} lg={24} className="filter-type">
                     {/* <Col xs={24} sm={7} md={5} lg={4}> */}
                     <Checkbox
                       checked={this.state.Intermediate}
@@ -274,7 +287,7 @@ class Tutorials extends React.Component {
                       Intermediate
                     </Checkbox>
                   </Col>
-                  <Col xs={24} className="filter-type">
+                  <Col xs={24} sm={8} lg={24} className="filter-type">
                     {/* <Col xs={24} sm={6} md={5} lg={4}> */}
                     <Checkbox
                       checked={this.state.Advanced}

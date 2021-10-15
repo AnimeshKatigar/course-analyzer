@@ -2,11 +2,18 @@
 	min-height: calc(100vh - 4rem);
 	width: 80%;
 	margin: 2rem auto;
+	background: #1b1b1b;
+	padding: 15px;
+	border-radius: 10px;
+	color: rgba(255, 255, 255, 0.85) ;
+	box-shadow: rgba(134, 2, 206, 0.35) 0px 5px 15px;
 	user-select: none;
 }
 
 .tutorial-title-name {
 	text-transform: capitalize;
+	color: rgba(255, 255, 255, 0.85) ;
+
 }
 
 .tutorial-tags {

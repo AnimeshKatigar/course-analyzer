@@ -11,7 +11,7 @@
   border-radius: 10px;
 }
 
-.btnContainer{
+.btnContainer {
   display: flex;
   justify-content: space-between;
 }
@@ -36,11 +36,10 @@
   width: 80%;
 }
 
-.haha{
+.haha {
   background-color: #8443de #ff46ab #69e52c #fc972b #fd313c #ffb420 #a6e509
     #2295ff #3359f5 #04caca;
 }
-
 
 .card-entries {
   margin-bottom: 1.2rem;
@@ -50,7 +49,7 @@
 }
 
 .card-entries span {
-color: white  
+  color: white;
 }
 
 .upvote-button {
@@ -66,7 +65,7 @@ color: white
   .card-title {
     font-size: 1rem;
   }
-  .btnContainer{
+  .btnContainer {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
