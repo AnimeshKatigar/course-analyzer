@@ -82,3 +82,9 @@ input:focus, input:checked, input:active, input:focus-within, input:visited, inp
     #6e00a8 100%
   );
 }
+
+@media screen and (max-width: 350px) {
+  .ant-btn{
+    padding: 0px 10px;
+  }
+}

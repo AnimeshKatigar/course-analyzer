@@ -174,7 +174,7 @@ class Tutorial extends React.Component {
                 {tutorial.title}
               </Col>
 
-              <Col sm={24} md={4}>
+              <Col xs={0} md={4}>
                 <span>
                   {!favorite ? (
                     <Button type="primary" onClick={this.addToFavorites}>
@@ -194,17 +194,43 @@ class Tutorial extends React.Component {
                   )}
                 </span>
               </Col>
-              <Col span={24}>
+              <Col md={20} sm={24}>
                 <div className="tutorial-info">{tutorial.description}</div>
               </Col>
+              
             </Row>
           </h1>
+
+          <div className="tutorial-tags">{tags}</div>
+
           {!upvote ? (
-            <Badge count={upvoteCount} showZero>
-              <Button className="upvote-button" onClick={this.addUpvote}>
-                Upvote
-              </Button>
-            </Badge>
+            <div style={{ display: "flex"}}>
+              <Badge count={upvoteCount} showZero>
+                <Button className="upvote-button" onClick={this.addUpvote}>
+                  Upvote
+                </Button>
+              </Badge>
+              <Col sm={24} md={0}>
+                <span style={{marginLeft:"20px"}}>
+                  {!favorite ? (
+                    <Button type="primary" onClick={this.addToFavorites}>
+                      Add to Favorites
+                    </Button>
+                  ) : (
+                    <Popconfirm
+                      placement="top"
+                      title="Remove from favorites?"
+                      okText="Yes"
+                      cancelText="Cancel"
+                      icon={<Icon type="question-circle" theme="outlined" />}
+                      onConfirm={this.removeFromFavorites}
+                    >
+                      <Button type="danger">Remove from Favorites</Button>
+                    </Popconfirm>
+                  )}
+                </span>
+              </Col>
+            </div>
           ) : (
             <Popconfirm
               placement="top"
@@ -221,24 +247,11 @@ class Tutorial extends React.Component {
               </Badge>
             </Popconfirm>
           )}
-          <div className="tutorial-tags">{tags}</div>
           {/* <div className="tutorial-info">
             <span className="bold">Submitted By :</span>{" "}
             {tutorial.submittedBy.name}
           </div> */}
-          {tutorial.rating != 0 && (
-            <div className="tutorial-info">
-              <span className="bold">Avg. Rating :</span>{" "}
-              <Rating
-                readonly
-                initialRating={tutorial.rating}
-                fractions="2"
-                className="rating-span"
-                emptySymbol="fa fa-star-o fa-1x"
-                fullSymbol="fa fa-star fa-1x medium"
-              />
-            </div>
-          )}
+          
 
           {/* <div className="tutorial-info">
             <span className="bold">Submitted On :</span>{" "}
@@ -256,6 +269,19 @@ class Tutorial extends React.Component {
           <div className="tutorial-info">
             <span className="bold">Medium :</span> {tutorial.medium}
           </div>
+          {tutorial.rating != 0 && (
+            <div className="tutorial-info">
+              <span className="bold">Avg. Rating :</span>{" "}
+              <Rating
+                readonly
+                initialRating={tutorial.rating}
+                fractions="2"
+                className="rating-span"
+                emptySymbol="fa fa-star-o fa-1x"
+                fullSymbol="fa fa-star fa-1x medium"
+              />
+            </div>
+          )}
           <span className="flag-icon flag-icon-al"></span>
           {tutorial.platform && (
             <div className="tutorial-info">
