@@ -12,9 +12,9 @@ const CountrySelector = ({selected, onSelect}) => {
   const showOptionLabel = ("Show Option Label", true);
   const showSecondaryOptionLabel = ("Show Secondary Option Label", true);
   const optionsSize = ("Options Size", 16);
-  const placeholder = ("Placeholder", "Select language..");
+  const placeholder = ("Placeholder", "Select language");
   const searchable = ("Searchable", true);
-  const searchPlaceholder = ("Search Placeholder", "");
+  const searchPlaceholder = ("Search Placeholder", "Search");
   const alignOptionsToRight = ("Align Options to Right", false);
   const fullWidth = ("Full Width", true);
   const disabled = ("Disabled", false);

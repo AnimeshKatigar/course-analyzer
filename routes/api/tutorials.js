@@ -120,6 +120,7 @@ router.post(
       description,
       platform,
       rating,
+      language
     } = req.body;
     // Create a new tutorial with the given fields
     const tutorial = new Tutorial({
@@ -134,6 +135,7 @@ router.post(
       skillLevel,
       tags,
       submittedBy: req.user._id,
+      language
     });
 
     // 1 - Save the tutorial

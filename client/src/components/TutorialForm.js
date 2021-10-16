@@ -23,7 +23,7 @@ class TutorialForm extends React.Component {
       rating: 0,
       tutorialDescription: "",
       tagDescription: "",
-      selected: "",
+      selected: "US",
     };
 
     this.openModal = this.openModal.bind(this);
@@ -113,7 +113,9 @@ class TutorialForm extends React.Component {
     if (this.state.tags.length === 0) {
       return message.warning("Select Tags");
     }
-
+    if (this.state.selected == "") {
+      return message.warning("Select Language");
+    }
     const tutorial = {
       title: this.refs.tutorialTitle.input.value,
       educator: this.refs.educatorsName.input.value,
@@ -125,6 +127,7 @@ class TutorialForm extends React.Component {
       rating: this.state.rating,
       skillLevel: this.refs.skillLevel.state.value,
       tags: this.state.tags,
+      language: this.state.selected.toLowerCase()
     };
 
     this.props.addTutorial(tutorial, this.props.history);
@@ -149,13 +152,7 @@ class TutorialForm extends React.Component {
           <div className="form-label required">Tutorial Title</div>
           <Input type="text" placeholder="Tutorial Title" ref="tutorialTitle" />
         </Form.Item>
-        {/* <Form.Item> */}
-          <div className="form-label required" style={{color: 'white',margin:"10px 0px"}}>Language</div>
-          <CountrySelector
-            selected={this.state.selected}
-            onSelect={(state) => this.setState({ selected: state })}
-          />
-        {/* </Form.Item> */}
+
         <Form.Item>
           <div className="form-label required">Description</div>
           <Input.TextArea
@@ -177,6 +174,16 @@ class TutorialForm extends React.Component {
             ref="educatorsName"
           />
         </Form.Item>
+        <div
+          className="form-label required"
+          style={{ color: "white", margin: "10px 0px" }}
+        >
+          Language
+        </div>
+        <CountrySelector
+          selected={this.state.selected}
+          onSelect={(state) => this.setState({ selected: state })}
+        />
         <Form.Item>
           <div className="form-label required">Link to Original Tutorial</div>
           <Input type="text" placeholder="Link" ref="tutorialLink" />

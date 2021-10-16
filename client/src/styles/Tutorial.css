@@ -1,70 +1,69 @@
 .tutorial {
-	min-height: calc(100vh - 4rem);
-	width: 80%;
-	margin: 2rem auto;
-	background: #1b1b1b;
-	padding: 15px;
-	border-radius: 10px;
-	color: rgba(255, 255, 255, 0.85) ;
-	box-shadow: rgba(134, 2, 206, 0.35) 0px 5px 15px;
-	user-select: none;
+  min-height: calc(100vh - 4rem);
+  width: 80%;
+  margin: 2rem auto;
+  background: #1b1b1b;
+  padding: 20px 25px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: rgba(134, 2, 206, 0.35) 0px 5px 15px;
+  user-select: none;
 }
 
 .tutorial-title-name {
-	text-transform: capitalize;
-	color: rgba(255, 255, 255, 0.85) ;
-
+  text-transform: capitalize;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .tutorial-tags {
-	margin-bottom: 1rem;
-	user-select: none;
+  margin-bottom: 1rem;
+  user-select: none;
 }
 
 .divider {
-	background-color: #1890ff;
+  background-color: rgb(134, 2, 206);
 }
 
 .tutorial-info {
-	font-size: 1rem;
-	margin-bottom: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
 }
 
 .bold {
-	font-weight: bold;
-	font-size: 1.2rem;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .reviews {
-	margin: 2rem 0 5rem 0;
+  margin: 2rem 0 5rem 0;
 }
 
 .review {
-	margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 .review .reviewed-by {
-	font-weight: bold;
-	margin-bottom: 5px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .review .review-content {
-	text-align: justify;
+  text-align: justify;
 }
 
 @media screen and (max-width: 768px) {
-	.tutorial-title-name {
-		font-size: 1.2rem;
-	}
+  .tutorial-title-name {
+    font-size: 1.2rem;
+  }
 
-	.tutorial-info {
-		font-size: 0.85rem;
-		margin-bottom: 10px;
-	}
+  .tutorial-info {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
 }
 
 @media screen and (max-width: 576px) {
-	.review-submit-button {
-		margin-top: 5px;
-	}
+  .review-submit-button {
+    margin-top: 5px;
+  }
 }

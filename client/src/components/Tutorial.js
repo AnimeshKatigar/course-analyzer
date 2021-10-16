@@ -155,7 +155,7 @@ class Tutorial extends React.Component {
 
       let reviews;
 
-      if (tutorial.reviews.length === 0 || !tutorial.reviews) {
+      if (!tutorial.reviews || tutorial.reviews.length === 0) {
         reviews = <div className="nothing-to-show review">No Reviews Yet</div>;
       } else {
         reviews = tutorial.reviews.map((review, i) => (
@@ -197,21 +197,20 @@ class Tutorial extends React.Component {
               <Col md={20} sm={24}>
                 <div className="tutorial-info">{tutorial.description}</div>
               </Col>
-              
             </Row>
           </h1>
 
           <div className="tutorial-tags">{tags}</div>
 
           {!upvote ? (
-            <div style={{ display: "flex"}}>
+            <div style={{ display: "flex" }}>
               <Badge count={upvoteCount} showZero>
                 <Button className="upvote-button" onClick={this.addUpvote}>
                   Upvote
                 </Button>
               </Badge>
               <Col sm={24} md={0}>
-                <span style={{marginLeft:"20px"}}>
+                <span style={{ marginLeft: "20px" }}>
                   {!favorite ? (
                     <Button type="primary" onClick={this.addToFavorites}>
                       Add to Favorites
@@ -251,7 +250,6 @@ class Tutorial extends React.Component {
             <span className="bold">Submitted By :</span>{" "}
             {tutorial.submittedBy.name}
           </div> */}
-          
 
           {/* <div className="tutorial-info">
             <span className="bold">Submitted On :</span>{" "}
@@ -282,7 +280,17 @@ class Tutorial extends React.Component {
               />
             </div>
           )}
-          <span className="flag-icon flag-icon-al"></span>
+          <div className="tutorial-info">
+            <span className="bold">Language :</span>{" "}
+            <span
+              className={
+                !tutorial.language
+                  ? "flag-icon flag-icon-us"
+                  : `flag-icon flag-icon-${tutorial.language}`
+              }
+            ></span>
+          </div>
+
           {tutorial.platform && (
             <div className="tutorial-info">
               <span className="bold">Platform :</span> {tutorial.platform}
@@ -301,7 +309,7 @@ class Tutorial extends React.Component {
               <span className="bold">Reviews</span>
             </div>
             <Row gutter={8}>
-              <Col sm={24} md={22}>
+              <Col sm={24} md={21}>
                 <Input.TextArea
                   rows={1}
                   placeholder="Add a review"
