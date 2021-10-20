@@ -145,6 +145,14 @@ class TutorialCard extends React.Component {
               <Tooltip placement="topLeft" title="Click here for more info">
                 <span className="tutorial-name">
                   {this.props.tutorial.title}
+                  <span
+                    className={
+                      !this.props.tutorial.language
+                        ? "flag-icon flag-icon-us"
+                        : `flag-icon flag-icon-${this.props.tutorial.language}`
+                    }
+                    style={{ marginLeft: 15 }}
+                  ></span>
                 </span>
               </Tooltip>
               {this.props.tutorial.rating > 0 && (

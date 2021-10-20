@@ -3,7 +3,6 @@ import { Form, Input, Button, Radio, Select, Modal, message } from "antd";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Rating from "react-rating";
-import ReactFlagsSelect from "react-flags-select";
 
 import { addTag, getTags } from "../actions/tagActions";
 import { addTutorial } from "../actions/tutorialActions";

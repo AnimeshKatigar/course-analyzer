@@ -8,12 +8,20 @@
 }
 
 .login-info {
-	background: rgb(7, 135, 230);
-	background: linear-gradient(
+	/* background: rgb(7, 135, 230); */
+	/* background: linear-gradient(
 		180deg,
 		rgba(7, 135, 230, 1) 0%,
 		rgba(45, 156, 255, 1) 50%,
 		rgba(7, 135, 230, 1) 100%
+	); */
+	background: linear-gradient(
+		180deg,
+		rgb(28, 4, 41) 0%,
+		rgb(126, 18, 184) 50%,
+		/* rgb(156, 1, 177) 45%, */
+		/* rgba(45, 156, 255, 1) 50%, */
+		rgb(40, 40, 40) 90%
 	);
 	color: #ffffff;
 	font-size: 1.5rem;

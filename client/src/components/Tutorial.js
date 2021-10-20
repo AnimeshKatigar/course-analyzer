@@ -194,7 +194,7 @@ class Tutorial extends React.Component {
                   )}
                 </span>
               </Col>
-              <Col md={20} sm={24}>
+              <Col md={20} sm={24} style={{marginTop: 5}}>
                 <div className="tutorial-info">{tutorial.description}</div>
               </Col>
             </Row>
@@ -267,7 +267,7 @@ class Tutorial extends React.Component {
           <div className="tutorial-info">
             <span className="bold">Medium :</span> {tutorial.medium}
           </div>
-          {tutorial.rating != 0 && (
+          {tutorial.rating > 0 && (
             <div className="tutorial-info">
               <span className="bold">Avg. Rating :</span>{" "}
               <Rating

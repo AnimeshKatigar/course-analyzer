@@ -32,7 +32,7 @@ class Login extends React.Component {
 								<div className="login-header">Find the best tutorials from</div>
 								<div className="websites">Udemy</div>
 								<div className="websites">Udacity</div>
-								<div className="websites">Edx</div>
+								{/* <div className="websites">Edx</div> */}
 								<div className="websites">Lynda</div>
 								<div className="websites">Medium</div>
 								<div className="websites">YouTube</div>

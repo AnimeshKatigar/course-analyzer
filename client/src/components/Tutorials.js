@@ -8,6 +8,7 @@ import { getTutorialsByTag } from "../actions/tutorialActions";
 
 import TutorialCard from "./TutorialCard";
 import Loader from "./Loader";
+import CountrySelector from "./CountrySelector.js";
 
 import "../styles/Tutorials.css";
 import codeImg from "../img/laptop-code-solid.svg";
@@ -30,6 +31,7 @@ class Tutorials extends React.Component {
         type: [],
         skillLevel: [],
       },
+      country: "",
     };
 
     this.onChange = this.onChange.bind(this);
@@ -89,7 +91,7 @@ class Tutorials extends React.Component {
       // recommended = mainTutorials.reduce((prev, current) =>
       //   prev.upvotes.length > current.upvotes.length ? prev : current
       // );
-      recommended=mainTutorials[0]
+      recommended = mainTutorials[0];
       // const remainingTutorials = mainTutorials.filter((tut)=>tut.id != max.id)
       const filteredTutorials = this.props.tutorial.tutorials.filter(
         (tutorial) => {
@@ -153,6 +155,8 @@ class Tutorials extends React.Component {
             this.state.filters.type.length === 0
           )
             return true;
+
+          if (this.state.filters.country.includes(tutorial.country)) return true;
           return false;
         }
       );
@@ -208,7 +212,7 @@ class Tutorials extends React.Component {
               <div className="filter">
                 <Row gutter={8}>
                   {/* <Col xs={24} sm={4} md={3} lg={3} className="filter-type"> */}
-                  <Col xs={24}  className="filter-type">
+                  <Col xs={24} className="filter-type">
                     Medium{" "}
                   </Col>
                   {/* <Col xs={24} sm={7} md={5} lg={4}> */}
@@ -296,6 +300,19 @@ class Tutorials extends React.Component {
                     >
                       Advanced
                     </Checkbox>
+                  </Col>
+                </Row>
+              </div>
+              <div className="filter">
+                <Row>
+                  <Col xs={24} className="filter-type">
+                    Language:
+                  </Col>
+                  <Col xs={24}>
+                    <CountrySelector
+                      selected={this.state.country}
+                      onSelect={(state) => this.setState({ country: state })}
+                    />
                   </Col>
                 </Row>
               </div>
