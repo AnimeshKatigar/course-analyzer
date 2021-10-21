@@ -72,7 +72,7 @@ router.get(
     // 2 - Sort them alphabetically
     // 3 - Return the array of tutorials in response
     Tutorial.find({ submittedBy: req.user._id })
-      .sort({ title: 1 })
+      .sort({ rating: -1 })
       .then((tutorials) => res.json({ tutorials }))
       .catch((err) =>
         res

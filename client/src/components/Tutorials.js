@@ -35,11 +35,17 @@ class Tutorials extends React.Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onCountryChange = this.onCountryChange.bind(this);
   }
 
   componentDidMount() {
     this.props.getTag(this.props.match.params.tag);
     this.props.getTutorialsByTag(this.props.match.params.tag);
+  }
+
+  onCountryChange(state) {
+    this.setState({ country: state });
+    console.log(this.state.country);
   }
 
   onChange(event) {
@@ -88,78 +94,99 @@ class Tutorials extends React.Component {
       tutorials = <Loader />;
     } else {
       const mainTutorials = this.props.tutorial.tutorials;
-      // recommended = mainTutorials.reduce((prev, current) =>
-      //   prev.upvotes.length > current.upvotes.length ? prev : current
-      // );
-      recommended = mainTutorials[0];
-      // const remainingTutorials = mainTutorials.filter((tut)=>tut.id != max.id)
-      const filteredTutorials = this.props.tutorial.tutorials.filter(
-        (tutorial) => {
-          if (
-            this.state.filters.medium.length !== 0 &&
-            this.state.filters.medium.includes(tutorial.medium) &&
-            this.state.filters.type.length !== 0 &&
-            this.state.filters.type.includes(tutorial.type) &&
-            this.state.filters.skillLevel.length !== 0 &&
-            this.state.filters.skillLevel.includes(tutorial.skillLevel)
-          )
-            return true;
-          if (
-            this.state.filters.medium.length === 0 &&
-            this.state.filters.type.length !== 0 &&
-            this.state.filters.type.includes(tutorial.type) &&
-            this.state.filters.skillLevel.length !== 0 &&
-            this.state.filters.skillLevel.includes(tutorial.skillLevel)
-          )
-            return true;
-          if (
-            this.state.filters.type.length === 0 &&
-            this.state.filters.medium.length !== 0 &&
-            this.state.filters.medium.includes(tutorial.medium) &&
-            this.state.filters.skillLevel.length !== 0 &&
-            this.state.filters.skillLevel.includes(tutorial.skillLevel)
-          )
-            return true;
-          if (
-            this.state.filters.skillLevel.length === 0 &&
-            this.state.filters.medium.length !== 0 &&
-            this.state.filters.medium.includes(tutorial.medium) &&
-            this.state.filters.type.length !== 0 &&
-            this.state.filters.type.includes(tutorial.type)
-          )
-            return true;
-          if (
-            this.state.filters.medium.length === 0 &&
-            this.state.filters.type.length === 0 &&
-            this.state.filters.skillLevel.length !== 0 &&
-            this.state.filters.skillLevel.includes(tutorial.skillLevel)
-          )
-            return true;
-          if (
-            this.state.filters.skillLevel.length === 0 &&
-            this.state.filters.type.length === 0 &&
-            this.state.filters.medium.length !== 0 &&
-            this.state.filters.medium.includes(tutorial.medium)
-          )
-            return true;
-          if (
-            this.state.filters.skillLevel.length === 0 &&
-            this.state.filters.medium.length === 0 &&
-            this.state.filters.type.length !== 0 &&
-            this.state.filters.type.includes(tutorial.type)
-          )
-            return true;
-          if (
-            this.state.filters.skillLevel.length === 0 &&
-            this.state.filters.medium.length === 0 &&
-            this.state.filters.type.length === 0
-          )
-            return true;
+      recommended = this.props.tutorial.tutorials.reduce(function (
+        prev,
+        current
+      ) {
+        let prevLength = prev.upvotes ? prev.upvotes.length : 0;
+        let currLength = current.upvotes ? current.upvotes.length : 0;
 
-          if (this.state.filters.country.includes(tutorial.country)) return true;
-          return false;
-        }
+        return (
+          prev.rating
+            ? prev.rating + prevLength
+            : 0 + prevLength > current.rating
+            ? current.rating + currLength
+            : 0 + currLength
+        )
+          ? prev
+          : current;
+      },
+      {});
+
+      const remainingTutorials = mainTutorials.filter(
+        (tut) => tut._id !== recommended._id
       );
+
+      const filteredTutorials = remainingTutorials.filter((tutorial) => {
+        if (
+          tutorial.language &&
+          this.state.country.toLowerCase() == tutorial.language
+        )
+          return true;
+
+        if (
+          this.state.filters.medium.length !== 0 &&
+          this.state.filters.medium.includes(tutorial.medium) &&
+          this.state.filters.type.length !== 0 &&
+          this.state.filters.type.includes(tutorial.type) &&
+          this.state.filters.skillLevel.length !== 0 &&
+          this.state.filters.skillLevel.includes(tutorial.skillLevel)
+        )
+          return true;
+        if (
+          this.state.filters.medium.length === 0 &&
+          this.state.filters.type.length !== 0 &&
+          this.state.filters.type.includes(tutorial.type) &&
+          this.state.filters.skillLevel.length !== 0 &&
+          this.state.filters.skillLevel.includes(tutorial.skillLevel)
+        )
+          return true;
+        if (
+          this.state.filters.type.length === 0 &&
+          this.state.filters.medium.length !== 0 &&
+          this.state.filters.medium.includes(tutorial.medium) &&
+          this.state.filters.skillLevel.length !== 0 &&
+          this.state.filters.skillLevel.includes(tutorial.skillLevel)
+        )
+          return true;
+        if (
+          this.state.filters.skillLevel.length === 0 &&
+          this.state.filters.medium.length !== 0 &&
+          this.state.filters.medium.includes(tutorial.medium) &&
+          this.state.filters.type.length !== 0 &&
+          this.state.filters.type.includes(tutorial.type)
+        )
+          return true;
+        if (
+          this.state.filters.medium.length === 0 &&
+          this.state.filters.type.length === 0 &&
+          this.state.filters.skillLevel.length !== 0 &&
+          this.state.filters.skillLevel.includes(tutorial.skillLevel)
+        )
+          return true;
+        if (
+          this.state.filters.skillLevel.length === 0 &&
+          this.state.filters.type.length === 0 &&
+          this.state.filters.medium.length !== 0 &&
+          this.state.filters.medium.includes(tutorial.medium)
+        )
+          return true;
+        if (
+          this.state.filters.skillLevel.length === 0 &&
+          this.state.filters.medium.length === 0 &&
+          this.state.filters.type.length !== 0 &&
+          this.state.filters.type.includes(tutorial.type)
+        )
+          return true;
+        if (
+          this.state.filters.skillLevel.length === 0 &&
+          this.state.filters.medium.length === 0 &&
+          this.state.filters.type.length === 0
+        )
+          return true;
+
+        return false;
+      });
 
       if (filteredTutorials.length === 0) {
         tutorials = (
@@ -168,18 +195,23 @@ class Tutorials extends React.Component {
           </div>
         );
       } else {
-        {
-          console.log(recommended);
-        }
-        tutorials = filteredTutorials.map((tutorial, i) => (
-          <Col span={24} key={i}>
-            <TutorialCard tutorial={tutorial} />
-          </Col>
-        ));
+        tutorials = (
+          <div>
+            <Col span={24}>
+              <TutorialCard tutorial={recommended} />
+            </Col>
+            {filteredTutorials.map((tutorial, i) => (
+            <Col span={24} key={i}>
+              <TutorialCard tutorial={tutorial} />
+            </Col>
+            ))}
+          </div>
+        );
       }
     }
     return (
       <div className="tutorials-by-tag">
+        {console.log(this.props.tutorial.tutorials)}
         <h1 className="tutorial-title">
           <span
             style={{
@@ -311,7 +343,7 @@ class Tutorials extends React.Component {
                   <Col xs={24}>
                     <CountrySelector
                       selected={this.state.country}
-                      onSelect={(state) => this.setState({ country: state })}
+                      onSelect={(state) => this.onCountryChange(state)}
                     />
                   </Col>
                 </Row>
