@@ -15,19 +15,18 @@
 }
 .ant-modal-header {
   background-color: #181818 !important;
-  border-bottom:2px solid #8b13cc !important;
+  border-bottom: 2px solid #8b13cc !important;
 }
 .ant-modal-footer {
-	border-color: #8b13cc !important;
-	padding:16px 24px ;
+  border-color: #8b13cc !important;
+  padding: 16px 24px;
 }
 .ant-modal-title {
-	color: #fff
+  color: #fff;
 }
 
-.ant-modal-close{
-	color: #fff
-
+.ant-modal-close {
+  color: #fff;
 }
 
 .ant-radio-button-wrapper:hover {
@@ -50,8 +49,9 @@
   margin-right: 10px;
 }
 
-.rating-span{
-  color:#FFE234
+.rating-span {
+  color: #ffe234;
+  width: max-content;
 }
 
 .word-count {
@@ -67,5 +67,8 @@
 @media screen and (max-width: 768px) {
   .full-page-form {
     width: 85%;
+  }
+  .fa-1x {
+    font-size: 0.8em !important;
   }
 }

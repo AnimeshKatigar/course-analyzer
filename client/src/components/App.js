@@ -51,6 +51,7 @@ class App extends React.Component {
 					<div>
 					{/* <div style={{paddingBottom:"1rem"}}> */}
 						<Navbar />
+						{console.log("windpww",window.location)}
 						<ScrollToTop>
 							<Switch>
 								<Route exact path="/" component={HomePage} />

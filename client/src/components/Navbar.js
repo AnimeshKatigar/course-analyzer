@@ -45,6 +45,7 @@ class Navbar extends React.Component {
 
   render() {
     const { authenticated } = this.props.auth;
+    let pathname = this.props.history.location.pathname;
     let navLinks, smallScreenNavLinks;
     let nlg = 18;
     let nmd = 16;
@@ -56,6 +57,17 @@ class Navbar extends React.Component {
           <Col xs={0} sm={0} md={3} lg={2}>
             <div
               className="navbar-link"
+              // style={
+              //   pathname == "/profile" &&
+              //   pathname !== "/" &&
+              //   pathname !== "/login"
+              //     ? {
+              //         borderBottom: "1px solid blue",
+              //       }
+              //     : {
+              //         borderBottom: "none",
+              //       }
+              // }
               onClick={() => this.props.history.push("/profile")}
             >
               <Icon type="user" /> Profile
@@ -106,6 +118,17 @@ class Navbar extends React.Component {
         <Col xs={0} sm={0} md={3} lg={2}>
           <div
             className="navbar-link"
+            // style={
+            //   pathname == "/login" &&
+            //   pathname !== "/profile" &&
+            //   pathname !== "/"
+            //     ? {
+            //         borderBottom: "1px solid blue",
+            //       }
+            //     : {
+            //         borderBottom: "none",
+            //       }
+            // }
             onClick={() => this.props.history.push("/login")}
           >
             Log In <Icon type="login" />
@@ -144,6 +167,17 @@ class Navbar extends React.Component {
         <Col xs={0} sm={0} md={3} lg={2}>
           <div
             className="navbar-link"
+            // style={
+            //   pathname == "/" &&
+            //   pathname !== "/profile" &&
+            //   pathname !== "/login"
+            //     ? {
+            //         borderBottom: "1px solid blue",
+            //       }
+            //     : {
+            //         borderBottom: "none",
+            //       }
+            // }
             onClick={() => this.props.history.push("/")}
           >
             <Icon type="home" /> Home
@@ -159,6 +193,7 @@ class Navbar extends React.Component {
           </div>
         </Col>
         {navLinks}
+        {console.log(this.props.history)}
         <Drawer
           title="Course Analyzer"
           placement="left"

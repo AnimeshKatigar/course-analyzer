@@ -188,7 +188,7 @@ class Tutorials extends React.Component {
         return false;
       });
 
-      if (filteredTutorials.length === 0 && !recommended) {
+      if (filteredTutorials.length === 0 || recommended.length>0) {
         tutorials = (
           <div className="nothing-to-show nothing-matched">
             No Tutorials Found with the following filters

@@ -122,8 +122,12 @@ class TutorialCard extends React.Component {
     }
 
     return (
-      <div>
-        {this.props.recommended && <div>Recommended Course</div>}
+      <div className={this.props.recommended && "main-card-cointainer"}>
+        {this.props.recommended && (
+          <div className="recommended-div">
+            <span>Recommended</span>
+          </div>
+        )}
         <Card
           className={
             this.props.recommended ? "recommended-card" : "tutorial-card"
