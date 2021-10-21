@@ -80,18 +80,6 @@ class TutorialCard extends React.Component {
   }
 
   render() {
-    // const colors = [
-    //   "#8443de",
-    //   "#ff46ab",
-    //   "#69e52c",
-    //   "#fc972b",
-    //   "#fd313c",
-    //   "#ffb420",
-    //   "#a6e509",
-    //   "#2295ff",
-    //   "#3359f5",
-    //   "#04caca",
-    // ];
     const colors = [
       "#CC00FF",
       "#ff46ab",
@@ -134,60 +122,66 @@ class TutorialCard extends React.Component {
     }
 
     return (
-      <Card className="tutorial-card">
-        <Skeleton loading={!this.props.tutorial} active>
-          <div
-            onClick={() =>
-              this.props.history.push(`/tutorials/${this.props.tutorial._id}`)
-            }
-          >
-            <div className="card-title">
-              <Tooltip placement="topLeft" title="Click here for more info">
-                <span className="tutorial-name">
-                  {this.props.tutorial.title}
-                  <span
-                    className={
-                      !this.props.tutorial.language
-                        ? "flag-icon flag-icon-us"
-                        : `flag-icon flag-icon-${this.props.tutorial.language}`
-                    }
-                    style={{ marginLeft: 15 }}
-                  ></span>
-                </span>
-              </Tooltip>
-              {this.props.tutorial.rating > 0 && (
-                <div className="tutorial-info">
-                  <Rating
-                    readonly
-                    initialRating={this.props.tutorial.rating}
-                    fractions="2"
-                    className="rating-span"
-                    emptySymbol="fa fa-star-o fa-1x"
-                    fullSymbol="fa fa-star fa-1x medium"
-                  />
-                </div>
-              )}
+      <div>
+        {this.props.recommended && <div>Recommended Course</div>}
+        <Card
+          className={
+            this.props.recommended ? "recommended-card" : "tutorial-card"
+          }
+        >
+          <Skeleton loading={!this.props.tutorial} active>
+            <div
+              onClick={() =>
+                this.props.history.push(`/tutorials/${this.props.tutorial._id}`)
+              }
+            >
+              <div className="card-title">
+                <Tooltip placement="topLeft" title="Click here for more info">
+                  <span className="tutorial-name">
+                    {this.props.tutorial.title}
+                    <span
+                      className={
+                        !this.props.tutorial.language
+                          ? "flag-icon flag-icon-us"
+                          : `flag-icon flag-icon-${this.props.tutorial.language}`
+                      }
+                      style={{ marginLeft: 15 }}
+                    ></span>
+                  </span>
+                </Tooltip>
+                {this.props.tutorial.rating > 0 && (
+                  <div className="tutorial-info">
+                    <Rating
+                      readonly
+                      initialRating={this.props.tutorial.rating}
+                      fractions="2"
+                      className="rating-span"
+                      emptySymbol="fa fa-star-o fa-1x"
+                      fullSymbol="fa fa-star fa-1x medium"
+                    />
+                  </div>
+                )}
+              </div>
+              <Row gutter={{ sm: 0, md: 4, xl: 8 }}>
+                <Col xs={24} sm={24} md={12} xl={8}>
+                  <div className="card-entries">
+                    <span>Medium</span> : {this.props.tutorial.medium}
+                  </div>
+                </Col>
+                <Col xs={24} sm={24} md={12} xl={8}>
+                  <div className="card-entries">
+                    <span>Type</span> : {this.props.tutorial.type}
+                  </div>
+                </Col>
+                <Col xs={24} sm={24} md={12} xl={8}>
+                  <div className="card-entries">
+                    <span>Skill Level</span>: {this.props.tutorial.skillLevel}
+                  </div>
+                </Col>
+              </Row>
+              <div className="card-entries">{tags}</div>
             </div>
-            <Row gutter={{ sm: 0, md: 4, xl: 8 }}>
-              <Col xs={24} sm={24} md={12} xl={8}>
-                <div className="card-entries">
-                  <span>Medium</span> : {this.props.tutorial.medium}
-                </div>
-              </Col>
-              <Col xs={24} sm={24} md={12} xl={8}>
-                <div className="card-entries">
-                  <span>Type</span> : {this.props.tutorial.type}
-                </div>
-              </Col>
-              <Col xs={24} sm={24} md={12} xl={8}>
-                <div className="card-entries">
-                  <span>Skill Level</span>: {this.props.tutorial.skillLevel}
-                </div>
-              </Col>
-            </Row>
-            <div className="card-entries">{tags}</div>
-          </div>
-          {/* <Row justify="space-between">
+            {/* <Row justify="space-between">
 						<Col xs={24} sm={24} md={14} lg={18} className="upvote-button">
 							{!upvote ? (
 								<Badge count={upvoteCount} showZero>
@@ -231,52 +225,53 @@ class TutorialCard extends React.Component {
 							)}
 						</Col>
 					</Row> */}
-          <div className="btnContainer">
-            <div className="upvote-button" style={{ display: "flex" }}>
-              {!upvote ? (
-                <Badge count={upvoteCount} showZero>
-                  <Button className="upvote-button" onClick={this.addUpvote}>
-                    Upvote
-                  </Button>
-                </Badge>
-              ) : (
-                <Popconfirm
-                  placement="top"
-                  title="Remove Upvote?"
-                  okText="Yes"
-                  cancelText="Cancel"
-                  icon={<Icon type="question-circle" theme="outlined" />}
-                  onConfirm={this.removeUpvote}
-                >
+            <div className="btnContainer">
+              <div className="upvote-button" style={{ display: "flex" }}>
+                {!upvote ? (
                   <Badge count={upvoteCount} showZero>
-                    <Button type="danger" className="upvote-button">
-                      Remove Upvote
+                    <Button className="upvote-button" onClick={this.addUpvote}>
+                      Upvote
                     </Button>
                   </Badge>
-                </Popconfirm>
-              )}
+                ) : (
+                  <Popconfirm
+                    placement="top"
+                    title="Remove Upvote?"
+                    okText="Yes"
+                    cancelText="Cancel"
+                    icon={<Icon type="question-circle" theme="outlined" />}
+                    onConfirm={this.removeUpvote}
+                  >
+                    <Badge count={upvoteCount} showZero>
+                      <Button type="danger" className="upvote-button">
+                        Remove Upvote
+                      </Button>
+                    </Badge>
+                  </Popconfirm>
+                )}
+              </div>
+              <div style={{ display: "flex" }}>
+                {!favorite ? (
+                  <Button type="primary" onClick={this.addToFavorites}>
+                    Add to Favorites
+                  </Button>
+                ) : (
+                  <Popconfirm
+                    placement="top"
+                    title="Remove from favorites?"
+                    okText="Yes"
+                    cancelText="Cancel"
+                    icon={<Icon type="question-circle" theme="outlined" />}
+                    onConfirm={this.removeFromFavorites}
+                  >
+                    <Button type="danger">Remove from Favorites</Button>
+                  </Popconfirm>
+                )}
+              </div>
             </div>
-            <div style={{ display: "flex" }}>
-              {!favorite ? (
-                <Button type="primary" onClick={this.addToFavorites}>
-                  Add to Favorites
-                </Button>
-              ) : (
-                <Popconfirm
-                  placement="top"
-                  title="Remove from favorites?"
-                  okText="Yes"
-                  cancelText="Cancel"
-                  icon={<Icon type="question-circle" theme="outlined" />}
-                  onConfirm={this.removeFromFavorites}
-                >
-                  <Button type="danger">Remove from Favorites</Button>
-                </Popconfirm>
-              )}
-            </div>
-          </div>
-        </Skeleton>
-      </Card>
+          </Skeleton>
+        </Card>
+      </div>
     );
   }
 }

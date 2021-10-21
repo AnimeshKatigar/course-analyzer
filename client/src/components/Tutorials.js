@@ -188,7 +188,7 @@ class Tutorials extends React.Component {
         return false;
       });
 
-      if (filteredTutorials.length === 0) {
+      if (filteredTutorials.length === 0 && !recommended) {
         tutorials = (
           <div className="nothing-to-show nothing-matched">
             No Tutorials Found with the following filters
@@ -198,7 +198,7 @@ class Tutorials extends React.Component {
         tutorials = (
           <div>
             <Col span={24}>
-              <TutorialCard tutorial={recommended} />
+              <TutorialCard tutorial={recommended} recommended={true}/>
             </Col>
             {filteredTutorials.map((tutorial, i) => (
             <Col span={24} key={i}>
