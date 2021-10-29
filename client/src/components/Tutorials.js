@@ -1,10 +1,11 @@
 import React from "react";
-import { Row, Col, Checkbox } from "antd";
+import { Row, Col, Checkbox, Input } from "antd";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { getTag } from "../actions/tagActions";
 import { getTutorialsByTag } from "../actions/tutorialActions";
+import { AiOutlineSearch } from "react-icons/ai";
 
 import TutorialCard from "./TutorialCard";
 import Loader from "./Loader";
@@ -32,9 +33,11 @@ class Tutorials extends React.Component {
         skillLevel: [],
       },
       country: "",
+      platform: "",
     };
 
     this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.onCountryChange = this.onCountryChange.bind(this);
   }
 
@@ -46,6 +49,10 @@ class Tutorials extends React.Component {
   onCountryChange(state) {
     this.setState({ country: state });
     console.log(this.state.country);
+  }
+
+  handleChange(event) {
+    this.setState({ platform: event.target.value });
   }
 
   onChange(event) {
@@ -187,8 +194,12 @@ class Tutorials extends React.Component {
 
         return false;
       });
+      // const merged=filteredTutorials.concat(recommended)
+      const filterData = filteredTutorials.filter((data) =>
+        data.title.toLowerCase().includes(this.state.platform.toLowerCase())
+      );
 
-      if (filteredTutorials.length === 0 || recommended.length>0) {
+      if (filterData.length === 0 && recommended.length > 0) {
         tutorials = (
           <div className="nothing-to-show nothing-matched">
             No Tutorials Found with the following filters
@@ -197,13 +208,14 @@ class Tutorials extends React.Component {
       } else {
         tutorials = (
           <div>
+            {/* {console.log("adsad",filterData)} */}
             <Col span={24}>
-              <TutorialCard tutorial={recommended} recommended={true}/>
+              <TutorialCard tutorial={recommended} recommended={true} />
             </Col>
-            {filteredTutorials.map((tutorial, i) => (
-            <Col span={24} key={i}>
-              <TutorialCard tutorial={tutorial} />
-            </Col>
+            {filterData.map((tutorial, i) => (
+              <Col span={24} key={i}>
+                <TutorialCard tutorial={tutorial} />
+              </Col>
             ))}
           </div>
         );
@@ -211,7 +223,6 @@ class Tutorials extends React.Component {
     }
     return (
       <div className="tutorials-by-tag">
-        {console.log(this.props.tutorial.tutorials)}
         <h1 className="tutorial-title">
           <span
             style={{
@@ -240,6 +251,24 @@ class Tutorials extends React.Component {
         <Row gutter={32}>
           <Col xs={24} md={16} lg={8}>
             <div className="filters">
+              <div className="filter">
+                <Row>
+                  <Input
+                    placeholder="Search..."
+                    size="large"
+                    prefix={
+                      <AiOutlineSearch
+                        color="rgba(255, 255, 255, 0.8)"
+                        size="20px"
+                      />
+                    }
+                    style={{width:"100%", margin:"0px 0px 10px"}}
+                    value={this.state.platform}
+                    className="searchInput"
+                    onChange={this.handleChange}
+                  />
+                </Row>
+              </div>
               <div className="bold filter-title">Filters</div>
               <div className="filter">
                 <Row gutter={8}>
@@ -332,19 +361,6 @@ class Tutorials extends React.Component {
                     >
                       Advanced
                     </Checkbox>
-                  </Col>
-                </Row>
-              </div>
-              <div className="filter">
-                <Row>
-                  <Col xs={24} className="filter-type">
-                    Language:
-                  </Col>
-                  <Col xs={24}>
-                    <CountrySelector
-                      selected={this.state.country}
-                      onSelect={(state) => this.onCountryChange(state)}
-                    />
                   </Col>
                 </Row>
               </div>

@@ -136,7 +136,14 @@ class TutorialCard extends React.Component {
           <Skeleton loading={!this.props.tutorial} active>
             <div
               onClick={() =>
-                this.props.history.push(`/tutorials/${this.props.tutorial._id}`)
+                this.props.history.push({
+                  pathname: `/tutorials/${this.props.tutorial._id}`,
+                  state: {
+                    recommended: this.props.recommended
+                      ? this.props.recommended
+                      : false,
+                  },
+                })
               }
             >
               <div className="card-title">

@@ -1,7 +1,7 @@
 .tag-card {
   border: none !important;
-  min-height: 240px;
-  height: auto ;
+  height: 240px;
+  /* height: auto ; */
   margin-bottom: 15px;
   background:#353535;
   cursor: pointer;

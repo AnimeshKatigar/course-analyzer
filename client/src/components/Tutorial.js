@@ -168,6 +168,11 @@ class Tutorial extends React.Component {
 
       tutorialPage = (
         <div>
+          {this.props.history.location.state.recommended && (
+            <div className="recommended-tutorial-div">
+              <span>Recommended</span>
+            </div>
+          )}
           <h1 className="tutorial-title-name">
             <Row gutter={8}>
               <Col sm={24} md={20}>
@@ -194,7 +199,7 @@ class Tutorial extends React.Component {
                   )}
                 </span>
               </Col>
-              <Col md={20} sm={24} style={{marginTop: 5}}>
+              <Col md={20} sm={24} style={{ marginTop: 5 }}>
                 <div className="tutorial-info">{tutorial.description}</div>
               </Col>
             </Row>
@@ -246,20 +251,12 @@ class Tutorial extends React.Component {
               </Badge>
             </Popconfirm>
           )}
-          {/* <div className="tutorial-info">
-            <span className="bold">Submitted By :</span>{" "}
-            {tutorial.submittedBy.name}
-          </div> */}
-
-          {/* <div className="tutorial-info">
-            <span className="bold">Submitted On :</span>{" "}
-            {moment(tutorial.submittedOn).format("MMMM DD, YYYY")}
-          </div> */}
           <Button type="primary">
             <a href={tutorial.link} target="_blank">
               Visit Tutorial
             </a>
           </Button>
+          {console.log(this.props.history)}
           <Divider className="divider" />
           <div className="tutorial-info">
             <span className="bold">Educator :</span> {tutorial.educator}
@@ -332,7 +329,36 @@ class Tutorial extends React.Component {
       );
     }
 
-    return <div className="tutorial">{tutorialPage}</div>;
+    return (
+      <div
+        className={
+          this.props.history.location.state.recommended
+            ? "main-recommended-card-cointainer"
+            : "tutorial"
+        }
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "20px",
+            color: "white",
+            left: "-50px",
+            cursor: "pointer",
+          }}
+          onClick={() => this.props.history.goBack()}
+        >
+          BACK
+        </div>
+        <div
+          className={
+            this.props.history.location.state.recommended &&
+            "recommended-tutorial"
+          }
+        >
+          {tutorialPage}
+        </div>
+      </div>
+    );
   }
 }
 
