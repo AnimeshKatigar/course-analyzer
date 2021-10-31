@@ -16,6 +16,8 @@ import moment from "moment";
 import PropTypes from "prop-types";
 import Rating from "react-rating";
 
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 import { getTutorial, addReview } from "../actions/tutorialActions";
 import {
   addToFavorites,
@@ -338,16 +340,10 @@ class Tutorial extends React.Component {
         }
       >
         <div
-          style={{
-            position: "absolute",
-            top: "20px",
-            color: "white",
-            left: "-50px",
-            cursor: "pointer",
-          }}
+          className="back-arrow-icon"
           onClick={() => this.props.history.goBack()}
         >
-          BACK
+          <IoMdArrowRoundBack color="rgba(255, 255, 255, 1)" size="30px" />
         </div>
         <div
           className={

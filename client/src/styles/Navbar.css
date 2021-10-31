@@ -41,9 +41,19 @@
   padding: 1.5rem 0;
   text-align: center;
   border-bottom: 1px solid #bebebe;
-  color: #0787e6;
+  color: white;
   cursor: pointer;
 }
+
+.ant-drawer-wrapper-body{
+  background-color: #1a1a1a
+}
+
+.ant-drawer-header{
+  background-color: #000;
+  border-bottom: 1px solid #610094
+}
+
 
 @media screen and (max-width: 576px) {
   .navbar .navbar-logo {

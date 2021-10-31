@@ -90,11 +90,21 @@
   transition-duration: 0.3s;
 }
 
+.back-arrow-icon {
+  position: absolute;
+  top: 2px;
+  color: white;
+  left: -50px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .tutorial-title-name {
     font-size: 1.2rem;
   }
-
+  .back-arrow-icon {
+    display: none !important;
+  }
   .tutorial-info {
     font-size: 0.85rem;
     margin-bottom: 10px;

@@ -195,7 +195,29 @@ class Navbar extends React.Component {
         {navLinks}
         {console.log(this.props.history)}
         <Drawer
-          title="Course Analyzer"
+          title={
+            <div
+              className="navbar-logo"
+              style={{
+                color: "white",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <span
+                style={{
+                  background: "#610094",
+                  color: "white",
+                  padding: "5px 8px",
+                  borderRadius: "10px",
+                }}
+              >
+                Course
+              </span>{" "}
+              Analyzer
+            </div>
+          }
           placement="left"
           closable={false}
           onClose={this.onClose}
