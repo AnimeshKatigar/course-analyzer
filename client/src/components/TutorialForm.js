@@ -17,11 +17,22 @@ class TutorialForm extends React.Component {
     this.state = {
       modalVisible: false,
       tags: [],
+      tutorialTitle: "",
+      tutorialEduc: "",
       tutorialLetters: 0,
-      tagLetters: 0,
-      rating: 0,
       tutorialDescription: "",
+      tutorialLink: "",
+      tutorialMedium: "",
+      tutorialPlatform: "",
+      tutorialType: "",
+      tutorialSkillLevel: "",
+      rating: 0,
+
+      tagTitle: "",
       tagDescription: "",
+      tagWebsite: "",
+      tagImage: "",
+      tagLetters: 0,
       selected: "US",
     };
 
@@ -50,8 +61,8 @@ class TutorialForm extends React.Component {
     this.setState({ tags });
   }
 
-  onChangeTutorial() {
-    const tutorialDescription = this.refs.tutorialDescription.textAreaRef.value;
+  onChangeTutorial(event) {
+    const tutorialDescription = event.target.value;
     if (tutorialDescription.length <= 150) {
       this.setState({
         tutorialLetters: tutorialDescription.length,
@@ -60,8 +71,8 @@ class TutorialForm extends React.Component {
     }
   }
 
-  onChangeTag() {
-    const tagDescription = this.refs.tagDescription.textAreaRef.value;
+  onChangeTag(event) {
+    const tagDescription = event.target.value;
     if (tagDescription.length <= 150) {
       this.setState({ tagLetters: tagDescription.length, tagDescription });
     }
@@ -70,26 +81,28 @@ class TutorialForm extends React.Component {
   addTag(event) {
     event.preventDefault();
 
-    if (this.refs.newTag.input.value.trim() === "") {
+    if (this.state.tagTitle.trim() === "") {
       return message.warning("Enter Tag");
     }
-    if (this.refs.tagDescription.textAreaRef.value.trim() === "") {
+    if (this.state.tagDescription.trim() === "") {
       return message.warning("Enter Tag Description");
     }
 
     const tag = {
-      tag: this.refs.newTag.input.value,
-      description: this.refs.tagDescription.textAreaRef.value,
-      logoLink: this.refs.logoLink.input.value,
-      website: this.refs.tagWebsite.input.value,
+      tag: this.state.tagTitle,
+      description: this.state.tagDescription,
+      logoLink: this.state.tagImage,
+      website: this.state.tagWebsite,
     };
 
     this.props.addTag(tag);
 
-    this.refs.newTag.input.value = "";
-    this.refs.tagDescription.textAreaRef.value = "";
-    this.refs.logoLink.input.value = "";
-    this.refs.tagWebsite.input.value = "";
+    this.setState({
+      tagTitle: "",
+      tagDescription: "",
+      tagWebsite: "",
+      tagImage: "",
+    });
 
     this.closeModal();
     window.location.reload();
@@ -97,16 +110,16 @@ class TutorialForm extends React.Component {
 
   submitTutorial(event) {
     event.preventDefault();
-    if (this.refs.tutorialTitle.input.value.trim() === "") {
+    if (this.state.tutorialTitle.trim() === "") {
       return message.warning("Enter Title");
     }
-    if (this.refs.educatorsName.input.value.trim() === "") {
+    if (this.state.tutorialEduc.trim() === "") {
       return message.warning("Enter Educator Name");
     }
-    if (this.refs.tutorialLink.input.value.trim() === "") {
+    if (this.state.tutorialLink.trim() === "") {
       return message.warning("Provide Tutorial Link");
     }
-    if (this.refs.tutorialDescription.textAreaRef.value.trim() === "") {
+    if (this.state.tutorialDescription.trim() === "") {
       return message.warning("Enter Tutorial Description");
     }
     if (this.state.tags.length === 0) {
@@ -116,17 +129,17 @@ class TutorialForm extends React.Component {
       return message.warning("Select Language");
     }
     const tutorial = {
-      title: this.refs.tutorialTitle.input.value,
-      educator: this.refs.educatorsName.input.value,
-      link: this.refs.tutorialLink.input.value,
-      description: this.refs.tutorialDescription.textAreaRef.value,
-      medium: this.refs.tutorialMedium.state.value,
-      platform: this.refs.platform.input.value,
-      type: this.refs.tutorialType.state.value,
+      title: this.state.tutorialTitle,
+      educator: this.state.tutorialEduc,
+      link: this.state.tutorialLink,
+      description: this.state.tutorialDescription,
+      medium: this.state.tutorialMedium,
+      platform: this.state.tutorialPlatform,
+      type: this.state.tutorialType,
       rating: this.state.rating,
-      skillLevel: this.refs.skillLevel.state.value,
+      skillLevel: this.state.tutorialSkillLevel,
       tags: this.state.tags,
-      language: this.state.selected.toLowerCase()
+      language: this.state.selected.toLowerCase(),
     };
 
     this.props.addTutorial(tutorial, this.props.history);
@@ -149,7 +162,13 @@ class TutorialForm extends React.Component {
         <h1 className="full-page-form-title">Tutorial Details</h1>
         <Form.Item>
           <div className="form-label required">Tutorial Title</div>
-          <Input type="text" placeholder="Tutorial Title" ref="tutorialTitle" />
+          <Input
+            type="text"
+            placeholder="Tutorial Title"
+            onChange={(event) =>
+              this.setState({ tutorialTitle: event.target.value })
+            }
+          />
         </Form.Item>
 
         <Form.Item>
@@ -170,7 +189,9 @@ class TutorialForm extends React.Component {
           <Input
             type="text"
             placeholder="Educator's Name"
-            ref="educatorsName"
+            onChange={(event) =>
+              this.setState({ tutorialEduc: event.target.value })
+            }
           />
         </Form.Item>
         <div
@@ -185,11 +206,23 @@ class TutorialForm extends React.Component {
         />
         <Form.Item>
           <div className="form-label required">Link to Original Tutorial</div>
-          <Input type="text" placeholder="Link" ref="tutorialLink" />
+          <Input
+            type="text"
+            placeholder="Link"
+            onChange={(event) =>
+              this.setState({ tutorialLink: event.target.value })
+            }
+          />
         </Form.Item>
         <Form.Item>
           <div className="form-label">Platform Name</div>
-          <Input type="text" placeholder="Platform" ref="platform" />
+          <Input
+            type="text"
+            placeholder="Platform"
+            onChange={(event) =>
+              this.setState({ tutorialPlatform: event.target.value })
+            }
+          />
         </Form.Item>
         <Form.Item>
           <div className="form-label">Rating</div>
@@ -206,21 +239,36 @@ class TutorialForm extends React.Component {
 
         <Form.Item>
           <div className="form-label">Medium</div>
-          <Radio.Group defaultValue="Video" ref="tutorialMedium">
+          <Radio.Group
+            defaultValue="Video"
+            onChange={(event) =>
+              this.setState({ tutorialMedium: event.target.value })
+            }
+          >
             <Radio.Button value="Video">Video</Radio.Button>
             <Radio.Button value="Blog">Blog</Radio.Button>
           </Radio.Group>
         </Form.Item>
         <Form.Item>
           <div className="form-label">Type of Tutorial</div>
-          <Radio.Group defaultValue="Free" ref="tutorialType">
+          <Radio.Group
+            defaultValue="Free"
+            onChange={(event) =>
+              this.setState({ tutorialType: event.target.value })
+            }
+          >
             <Radio.Button value="Free">Free</Radio.Button>
             <Radio.Button value="Paid">Paid</Radio.Button>
           </Radio.Group>
         </Form.Item>
         <Form.Item>
           <div className="form-label">Skill Level</div>
-          <Radio.Group defaultValue="Beginner" ref="skillLevel">
+          <Radio.Group
+            defaultValue="Beginner"
+            onChange={(event) =>
+              this.setState({ tutorialSkillLevel: event.target.value })
+            }
+          >
             <Radio.Button value="Beginner">Beginner</Radio.Button>
             <Radio.Button value="Intermediate">Intermediate</Radio.Button>
             <Radio.Button value="Advanced">Advanced</Radio.Button>
@@ -264,7 +312,13 @@ class TutorialForm extends React.Component {
           <Form>
             <Form.Item>
               <div className="form-label required">Tag</div>
-              <Input type="text" placeholder="Tag" ref="newTag" />
+              <Input
+                type="text"
+                placeholder="Tag"
+                onChange={(event) =>
+                  this.setState({ tagTitle: event.target.value })
+                }
+              />
             </Form.Item>
             <Form.Item>
               <div className="form-label required">Description</div>
@@ -284,7 +338,9 @@ class TutorialForm extends React.Component {
               <Input
                 type="text"
                 placeholder="Official Website"
-                ref="logoLink"
+                onChange={(event) =>
+                  this.setState({ tagImage: event.target.value })
+                }
               />
             </Form.Item>
             <Form.Item>
@@ -292,7 +348,9 @@ class TutorialForm extends React.Component {
               <Input
                 type="text"
                 placeholder="Official Website"
-                ref="tagWebsite"
+                onChange={(event) =>
+                  this.setState({ tagWebsite: event.target.value })
+                }
               />
             </Form.Item>
           </Form>
