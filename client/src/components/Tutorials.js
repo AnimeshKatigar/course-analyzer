@@ -101,6 +101,11 @@ class Tutorials extends React.Component {
       tutorials = <Loader />;
     } else {
       const mainTutorials = this.props.tutorial.tutorials;
+      // recommended = this.props.tutorial.tutorials.reduce((prev, current) =>
+      //   (prev.rating ? prev.rating : 0) > (current.rating ? current.rating : 0)
+      //     ? prev
+      //     : current
+      // );
       recommended = this.props.tutorial.tutorials.reduce(function (
         prev,
         current
@@ -108,13 +113,8 @@ class Tutorials extends React.Component {
         let prevLength = prev.upvotes ? prev.upvotes.length : 0;
         let currLength = current.upvotes ? current.upvotes.length : 0;
 
-        return (
-          prev.rating
-            ? prev.rating + prevLength
-            : 0 + prevLength > current.rating
-            ? current.rating + currLength
-            : 0 + currLength
-        )
+        return (prev.rating ? prev.rating + prevLength : 0 + prevLength) >
+          (current.rating ? current.rating + currLength : 0 + currLength)
           ? prev
           : current;
       },
@@ -199,7 +199,7 @@ class Tutorials extends React.Component {
         data.title.toLowerCase().includes(this.state.platform.toLowerCase())
       );
 
-      if (filterData.length === 0 && recommended.length > 0) {
+      if (filterData.length === 0) {
         tutorials = (
           <div className="nothing-to-show nothing-matched">
             No Tutorials Found with the following filters
@@ -262,7 +262,7 @@ class Tutorials extends React.Component {
                         size="20px"
                       />
                     }
-                    style={{width:"100%", margin:"0px 0px 10px"}}
+                    style={{ width: "100%", margin: "0px 0px 10px" }}
                     value={this.state.platform}
                     className="searchInput"
                     onChange={this.handleChange}

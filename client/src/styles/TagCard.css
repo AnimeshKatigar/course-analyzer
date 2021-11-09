@@ -44,11 +44,14 @@
   padding-top: 10px;
   border-top: 2px solid #8e0fd3;
   color: rgba(255, 255, 255, 0.65);
+  overflow: hidden;
+  text-overflow: ellipsis
 
 }
 
 .tag-card-website .website-link {
   transition-duration: 0.3s;
+  white-space: nowrap;
   color: #d079ff;
 }
 

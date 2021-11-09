@@ -22,10 +22,10 @@ class TutorialForm extends React.Component {
       tutorialLetters: 0,
       tutorialDescription: "",
       tutorialLink: "",
-      tutorialMedium: "",
+      tutorialMedium: "Video",
       tutorialPlatform: "",
-      tutorialType: "",
-      tutorialSkillLevel: "",
+      tutorialType: "Free",
+      tutorialSkillLevel: "Beginner",
       rating: 0,
 
       tagTitle: "",
