@@ -76,7 +76,7 @@ class HomePage extends React.Component {
         <Header />
         <div className="homepage-tags">
           <div className="homepage-tags-header">
-            <span className="TutsSpan">Tutorials</span>
+            <span className="TutsSpan">Domains</span>
           </div>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Input

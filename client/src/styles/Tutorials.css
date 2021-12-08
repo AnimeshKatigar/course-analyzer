@@ -50,6 +50,34 @@
   font-size: 1rem;
 }
 
+.compare-details {
+  padding: 20px 15px 10px;
+  border-radius: 15px 15px 0px 0px;
+  width: 80%;
+  background: black;
+  position: fixed;
+  bottom: 0;
+  left: 10%;
+  z-index: 3000;
+}
+
+.ReactSwipeableBottomSheet--closed {
+  background-color: transparent !important;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.ReactSwipeableBottomSheet--open {
+  border-radius: 15px 15px 0px 0px;
+  background-color: transparent !important;
+}
+
+.react-swipeable-view-container {
+  width: 90%;
+  border-radius: 15px 15px 0px 0px;
+  margin: 0px auto;
+  /* box-shadow:rgba(98, 0, 148, 0.7) 30px 0px 30px !important; */
+}
+
 @media screen and (max-width: 992px) {
   .filters {
     padding: 15px;

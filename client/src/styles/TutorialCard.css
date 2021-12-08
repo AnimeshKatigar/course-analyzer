@@ -81,11 +81,6 @@
   width: 80%;
 }
 
-.haha {
-  background-color: #8443de #ff46ab #69e52c #fc972b #fd313c #ffb420 #a6e509
-    #2295ff #3359f5 #04caca;
-}
-
 .card-entries {
   margin-bottom: 1.2rem;
   font-weight: 400;
@@ -99,6 +94,30 @@
 
 .upvote-button {
   margin-bottom: 5px;
+}
+
+.compare-div {
+  margin-top: -10px;
+  z-index: -200;
+  padding: 20px 20px 10px;
+  background-color: #202020;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+}
+
+.add-compare {
+  padding: 5px 10px;
+  background: #9a14e2;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 14px;
+  color: white;
+  width: 160px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 @media screen and (max-width: 768px) {

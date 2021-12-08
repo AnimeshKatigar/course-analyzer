@@ -16,6 +16,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Rating from "react-rating";
+import { MdAdd } from "react-icons/md";
 
 import {
   addToFavorites,
@@ -35,11 +36,21 @@ class TutorialCard extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      compareAdded: false,
+    };
+
     this.addToFavorites = this.addToFavorites.bind(this);
     this.removeFromFavorites = this.removeFromFavorites.bind(this);
     this.addUpvote = this.addUpvote.bind(this);
     this.removeUpvote = this.removeUpvote.bind(this);
+    // this.compareAdd = this.compareAdd.bind(this);
   }
+
+  // compareAdd(tut) {
+  //   this.setState({ compareAdded: true });
+  //   this.props.addCompare(tut);
+  // }
 
   addToFavorites() {
     if (!this.props.auth.authenticated) {
@@ -93,6 +104,9 @@ class TutorialCard extends React.Component {
       "#04caca",
     ];
     let tags;
+    var addCompare = this.props.addCompare;
+    var removeCompare = this.props.removeCompare;
+
     if (this.props.tutorial.tags) {
       tags = this.props.tutorial.tags.map((tag, i) => (
         <Tag key={i} color={colors[i % colors.length]}>
@@ -192,50 +206,7 @@ class TutorialCard extends React.Component {
               </Row>
               <div className="card-entries">{tags}</div>
             </div>
-            {/* <Row justify="space-between">
-						<Col xs={24} sm={24} md={14} lg={18} className="upvote-button">
-							{!upvote ? (
-								<Badge count={upvoteCount} showZero>
-									<Button className="upvote-button" onClick={this.addUpvote}>
-										Upvote
-									</Button>
-								</Badge>
-							) : (
-								<Popconfirm
-									placement="top"
-									title="Remove Upvote?"
-									okText="Yes"
-									cancelText="Cancel"
-									icon={<Icon type="question-circle" theme="outlined" />}
-									onConfirm={this.removeUpvote}
-								>
-									<Badge count={upvoteCount} showZero>
-										<Button type="danger" className="upvote-button">
-											Remove Upvote
-										</Button>
-									</Badge>
-								</Popconfirm>
-							)}
-						</Col>
-						<Col xs={24} sm={24} md={6} lg={4}>
-							{!favorite ? (
-								<Button type="primary" onClick={this.addToFavorites}>
-									Add to Favorites
-								</Button>
-							) : (
-								<Popconfirm
-									placement="top"
-									title="Remove from favorites?"
-									okText="Yes"
-									cancelText="Cancel"
-									icon={<Icon type="question-circle" theme="outlined" />}
-									onConfirm={this.removeFromFavorites}
-								>
-									<Button type="danger">Remove from Favorites</Button>
-								</Popconfirm>
-							)}
-						</Col>
-					</Row> */}
+
             <div className="btnContainer">
               <div className="upvote-button" style={{ display: "flex" }}>
                 {!upvote ? (
@@ -282,6 +253,32 @@ class TutorialCard extends React.Component {
             </div>
           </Skeleton>
         </Card>
+        {this.state.compareAdded ? (
+          <div className="compare-div">
+            <Button
+              type="danger"
+              className="upvote-button"
+              onClick={() => {
+                removeCompare(this.props.tutorial);
+                this.setState({ compareAdded: false });
+              }}
+            >
+              Remove from Compare
+            </Button>
+          </div>
+        ) : (
+          <div
+            className="compare-div"
+            onClick={() => {
+              addCompare(this.props.tutorial);
+              this.setState({ compareAdded: true });
+            }}
+          >
+            <div className="add-compare">
+              <MdAdd color="white" fontSize="18px" /> Add to Compare
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -293,6 +290,7 @@ TutorialCard.propTypes = {
   removeFromFavorites: PropTypes.func.isRequired,
   clearMessage: PropTypes.func.isRequired,
   getUserProfile: PropTypes.func.isRequired,
+  addCompare: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

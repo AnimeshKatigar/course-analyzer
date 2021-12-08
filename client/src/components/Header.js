@@ -23,7 +23,7 @@ class Header extends React.Component {
             The best place to find online tutorials.
           </p>
           <div className="scroll-down">
-            <div>Explore Tutorials</div>
+            <div>Explore Courses</div>
             <div className="icon-wrapper">
               <Icon
                 type="double-right"

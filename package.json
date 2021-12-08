@@ -32,7 +32,8 @@
 		"mongoose": "^5.7.5",
 		"passport": "^0.4.0",
 		"passport-jwt": "^4.0.0",
-		"quickemailverification": "^1.0.2"
+		"quickemailverification": "^1.0.2",
+		"react-swipeable-bottom-sheet": "^1.1.2"
 	},
 	"devDependencies": {
 		"cross-env": "^5.2.0",
