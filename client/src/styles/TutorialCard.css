@@ -14,7 +14,7 @@
 .recommended-card {
   --x: 50%;
   --y: 50%;
-
+  /* z-index: -2; */
   position: relative;
   appearance: none;
   padding: 0px;
@@ -41,7 +41,7 @@
 
 .main-card-cointainer {
   position: relative;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .recommended-div {
@@ -49,11 +49,10 @@
   padding: 5px 10px;
   background: #219e18;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
   position: absolute;
-  top: -15px;
+  top: -35px;
   left: calc(50% - 85px);
-  z-index: 5;
 }
 
 .btnContainer {
@@ -98,7 +97,7 @@
 
 .compare-div {
   margin-top: -10px;
-  z-index: -200;
+  z-index: -5;
   padding: 20px 20px 10px;
   background-color: #202020;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.08);

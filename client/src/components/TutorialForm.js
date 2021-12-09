@@ -6,6 +6,7 @@ import Rating from "react-rating";
 
 import { addTag, getTags } from "../actions/tagActions";
 import { addTutorial } from "../actions/tutorialActions";
+import Footer from "./Footer";
 
 import CountrySelector from "./CountrySelector.js";
 import "../styles/TutorialForm.css";
@@ -158,204 +159,207 @@ class TutorialForm extends React.Component {
     }
 
     return (
-      <Form className="full-page-form" onSubmit={this.submitTutorial}>
-        <h1 className="full-page-form-title">Tutorial Details</h1>
-        <Form.Item>
-          <div className="form-label required">Tutorial Title</div>
-          <Input
-            type="text"
-            placeholder="Tutorial Title"
-            onChange={(event) =>
-              this.setState({ tutorialTitle: event.target.value })
-            }
-          />
-        </Form.Item>
+      <div>
+        <Form className="full-page-form" onSubmit={this.submitTutorial}>
+          <h1 className="full-page-form-title">Tutorial Details</h1>
+          <Form.Item>
+            <div className="form-label required">Tutorial Title</div>
+            <Input
+              type="text"
+              placeholder="Tutorial Title"
+              onChange={(event) =>
+                this.setState({ tutorialTitle: event.target.value })
+              }
+            />
+          </Form.Item>
 
-        <Form.Item>
-          <div className="form-label required">Description</div>
-          <Input.TextArea
-            placeholder="Description"
-            rows={2}
-            ref="tutorialDescription"
-            onChange={this.onChangeTutorial}
-            value={this.state.tutorialDescription}
+          <Form.Item>
+            <div className="form-label required">Description</div>
+            <Input.TextArea
+              placeholder="Description"
+              rows={2}
+              ref="tutorialDescription"
+              onChange={this.onChangeTutorial}
+              value={this.state.tutorialDescription}
+            />
+            <small className="word-count">
+              {this.state.tutorialLetters} / 150
+            </small>
+          </Form.Item>
+          <Form.Item>
+            <div className="form-label required">Educator's Name</div>
+            <Input
+              type="text"
+              placeholder="Educator's Name"
+              onChange={(event) =>
+                this.setState({ tutorialEduc: event.target.value })
+              }
+            />
+          </Form.Item>
+          <div
+            className="form-label required"
+            style={{ color: "white", margin: "10px 0px" }}
+          >
+            Language
+          </div>
+          <CountrySelector
+            selected={this.state.selected}
+            onSelect={(state) => this.setState({ selected: state })}
           />
-          <small className="word-count">
-            {this.state.tutorialLetters} / 150
-          </small>
-        </Form.Item>
-        <Form.Item>
-          <div className="form-label required">Educator's Name</div>
-          <Input
-            type="text"
-            placeholder="Educator's Name"
-            onChange={(event) =>
-              this.setState({ tutorialEduc: event.target.value })
-            }
-          />
-        </Form.Item>
-        <div
-          className="form-label required"
-          style={{ color: "white", margin: "10px 0px" }}
-        >
-          Language
-        </div>
-        <CountrySelector
-          selected={this.state.selected}
-          onSelect={(state) => this.setState({ selected: state })}
-        />
-        <Form.Item>
-          <div className="form-label required">Link to Original Tutorial</div>
-          <Input
-            type="text"
-            placeholder="Link"
-            onChange={(event) =>
-              this.setState({ tutorialLink: event.target.value })
-            }
-          />
-        </Form.Item>
-        <Form.Item>
-          <div className="form-label">Platform Name</div>
-          <Input
-            type="text"
-            placeholder="Platform"
-            onChange={(event) =>
-              this.setState({ tutorialPlatform: event.target.value })
-            }
-          />
-        </Form.Item>
-        <Form.Item>
-          <div className="form-label">Rating</div>
-          <Rating
-            initialRating={this.state.rating}
-            fractions="2"
-            className="rating-span"
-            emptySymbol="fa fa-star-o fa-2x"
-            fullSymbol="fa fa-star fa-2x medium"
-            // quiet
-            onChange={(rate) => this.setState({ rating: rate })}
-          />
-        </Form.Item>
+          <Form.Item>
+            <div className="form-label required">Link to Original Tutorial</div>
+            <Input
+              type="text"
+              placeholder="Link"
+              onChange={(event) =>
+                this.setState({ tutorialLink: event.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item>
+            <div className="form-label">Platform Name</div>
+            <Input
+              type="text"
+              placeholder="Platform"
+              onChange={(event) =>
+                this.setState({ tutorialPlatform: event.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item>
+            <div className="form-label">Rating</div>
+            <Rating
+              initialRating={this.state.rating}
+              fractions="2"
+              className="rating-span"
+              emptySymbol="fa fa-star-o fa-2x"
+              fullSymbol="fa fa-star fa-2x medium"
+              // quiet
+              onChange={(rate) => this.setState({ rating: rate })}
+            />
+          </Form.Item>
 
-        <Form.Item>
-          <div className="form-label">Medium</div>
-          <Radio.Group
-            defaultValue="Video"
-            onChange={(event) =>
-              this.setState({ tutorialMedium: event.target.value })
-            }
-          >
-            <Radio.Button value="Video">Video</Radio.Button>
-            <Radio.Button value="Blog">Blog</Radio.Button>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item>
-          <div className="form-label">Type of Tutorial</div>
-          <Radio.Group
-            defaultValue="Free"
-            onChange={(event) =>
-              this.setState({ tutorialType: event.target.value })
-            }
-          >
-            <Radio.Button value="Free">Free</Radio.Button>
-            <Radio.Button value="Paid">Paid</Radio.Button>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item>
-          <div className="form-label">Skill Level</div>
-          <Radio.Group
-            defaultValue="Beginner"
-            onChange={(event) =>
-              this.setState({ tutorialSkillLevel: event.target.value })
-            }
-          >
-            <Radio.Button value="Beginner">Beginner</Radio.Button>
-            <Radio.Button value="Intermediate">Intermediate</Radio.Button>
-            <Radio.Button value="Advanced">Advanced</Radio.Button>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item>
-          <div className="form-label required">Tags</div>
-          <Select mode="multiple" onChange={this.selectTags}>
-            {tags}
-          </Select>
-          <Button onClick={this.openModal}>Add New Tag</Button>
-        </Form.Item>
-        <Form.Item className="form-action-buttons">
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="form-action-button"
-          >
-            Submit Tutorial
-          </Button>
-          <Button
-            className="form-action-button"
-            onClick={this.props.history.goBack}
-          >
-            Cancel
-          </Button>
-        </Form.Item>
-        <Modal
-          visible={this.state.modalVisible}
-          title="New Tag Details"
-          onCancel={this.closeModal}
-          footer={[
-            <Button key="1" onClick={this.closeModal}>
+          <Form.Item>
+            <div className="form-label">Medium</div>
+            <Radio.Group
+              defaultValue="Video"
+              onChange={(event) =>
+                this.setState({ tutorialMedium: event.target.value })
+              }
+            >
+              <Radio.Button value="Video">Video</Radio.Button>
+              <Radio.Button value="Blog">Blog</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item>
+            <div className="form-label">Type of Tutorial</div>
+            <Radio.Group
+              defaultValue="Free"
+              onChange={(event) =>
+                this.setState({ tutorialType: event.target.value })
+              }
+            >
+              <Radio.Button value="Free">Free</Radio.Button>
+              <Radio.Button value="Paid">Paid</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item>
+            <div className="form-label">Skill Level</div>
+            <Radio.Group
+              defaultValue="Beginner"
+              onChange={(event) =>
+                this.setState({ tutorialSkillLevel: event.target.value })
+              }
+            >
+              <Radio.Button value="Beginner">Beginner</Radio.Button>
+              <Radio.Button value="Intermediate">Intermediate</Radio.Button>
+              <Radio.Button value="Advanced">Advanced</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item>
+            <div className="form-label required">Tags</div>
+            <Select mode="multiple" onChange={this.selectTags}>
+              {tags}
+            </Select>
+            <Button onClick={this.openModal}>Add New Tag</Button>
+          </Form.Item>
+          <Form.Item className="form-action-buttons">
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="form-action-button"
+            >
+              Submit Tutorial
+            </Button>
+            <Button
+              className="form-action-button"
+              onClick={this.props.history.goBack}
+            >
               Cancel
-            </Button>,
-            <Button key="2" type="primary" onClick={this.addTag}>
-              Add Tag
-            </Button>,
-          ]}
-        >
-          <Form>
-            <Form.Item>
-              <div className="form-label required">Tag</div>
-              <Input
-                type="text"
-                placeholder="Tag"
-                onChange={(event) =>
-                  this.setState({ tagTitle: event.target.value })
-                }
-              />
-            </Form.Item>
-            <Form.Item>
-              <div className="form-label required">Description</div>
-              <Input.TextArea
-                placeholder="Description"
-                rows={3}
-                ref="tagDescription"
-                onChange={this.onChangeTag}
-                value={this.state.tagDescription}
-              />
-              <small className="word-count">
-                {this.state.tagLetters} / 150
-              </small>
-            </Form.Item>
-            <Form.Item>
-              <div className="form-label">Tag Image URL</div>
-              <Input
-                type="text"
-                placeholder="Official Website"
-                onChange={(event) =>
-                  this.setState({ tagImage: event.target.value })
-                }
-              />
-            </Form.Item>
-            <Form.Item>
-              <div className="form-label">Official Website</div>
-              <Input
-                type="text"
-                placeholder="Official Website"
-                onChange={(event) =>
-                  this.setState({ tagWebsite: event.target.value })
-                }
-              />
-            </Form.Item>
-          </Form>
-        </Modal>
-      </Form>
+            </Button>
+          </Form.Item>
+          <Modal
+            visible={this.state.modalVisible}
+            title="New Tag Details"
+            onCancel={this.closeModal}
+            footer={[
+              <Button key="1" onClick={this.closeModal}>
+                Cancel
+              </Button>,
+              <Button key="2" type="primary" onClick={this.addTag}>
+                Add Tag
+              </Button>,
+            ]}
+          >
+            <Form>
+              <Form.Item>
+                <div className="form-label required">Tag</div>
+                <Input
+                  type="text"
+                  placeholder="Tag"
+                  onChange={(event) =>
+                    this.setState({ tagTitle: event.target.value })
+                  }
+                />
+              </Form.Item>
+              <Form.Item>
+                <div className="form-label required">Description</div>
+                <Input.TextArea
+                  placeholder="Description"
+                  rows={3}
+                  ref="tagDescription"
+                  onChange={this.onChangeTag}
+                  value={this.state.tagDescription}
+                />
+                <small className="word-count">
+                  {this.state.tagLetters} / 150
+                </small>
+              </Form.Item>
+              <Form.Item>
+                <div className="form-label">Tag Image URL</div>
+                <Input
+                  type="text"
+                  placeholder="Official Website"
+                  onChange={(event) =>
+                    this.setState({ tagImage: event.target.value })
+                  }
+                />
+              </Form.Item>
+              <Form.Item>
+                <div className="form-label">Official Website</div>
+                <Input
+                  type="text"
+                  placeholder="Official Website"
+                  onChange={(event) =>
+                    this.setState({ tagWebsite: event.target.value })
+                  }
+                />
+              </Form.Item>
+            </Form>
+          </Modal>
+        </Form>
+        <Footer />
+      </div>
     );
   }
 }

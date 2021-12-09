@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import moment from "moment";
 import PropTypes from "prop-types";
 import Rating from "react-rating";
+import Footer from "./Footer";
 
 import { IoMdArrowRoundBack } from "react-icons/io";
 
@@ -332,27 +333,30 @@ class Tutorial extends React.Component {
     }
 
     return (
-      <div
-        className={
-          this.props.history.location.state.recommended
-            ? "main-recommended-card-cointainer"
-            : "tutorial"
-        }
-      >
-        <div
-          className="back-arrow-icon"
-          onClick={() => this.props.history.goBack()}
-        >
-          <IoMdArrowRoundBack color="rgba(255, 255, 255, 1)" size="30px" />
-        </div>
+      <div>
         <div
           className={
-            this.props.history.location.state.recommended &&
-            "recommended-tutorial"
+            this.props.history.location.state.recommended
+              ? "main-recommended-card-cointainer"
+              : "tutorial"
           }
         >
-          {tutorialPage}
+          <div
+            className="back-arrow-icon"
+            onClick={() => this.props.history.goBack()}
+          >
+            <IoMdArrowRoundBack color="rgba(255, 255, 255, 1)" size="30px" />
+          </div>
+          <div
+            className={
+              this.props.history.location.state.recommended &&
+              "recommended-tutorial"
+            }
+          >
+            {tutorialPage}
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }

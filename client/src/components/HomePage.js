@@ -11,6 +11,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 import { clearSignUp } from "../actions/authActions";
 import { getTags } from "../actions/tagActions";
+import Footer from "./Footer";
 
 import "../styles/HomePage.css";
 
@@ -72,26 +73,34 @@ class HomePage extends React.Component {
     }
 
     return (
-      <div className="home-page">
-        <Header />
-        <div className="homepage-tags">
-          <div className="homepage-tags-header">
-            <span className="TutsSpan">Domains</span>
+      <div>
+        <div className="home-page">
+          <Header />
+          <div className="homepage-tags">
+            <div className="homepage-tags-header">
+              <span className="TutsSpan">Domains</span>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Input
+                placeholder="Search..."
+                size="large"
+                prefix={
+                  <AiOutlineSearch
+                    color="rgba(255, 255, 255, 0.8)"
+                    size="20px"
+                  />
+                }
+                value={this.state.search}
+                className="searchInput"
+                onChange={this.handleChange}
+              />
+            </div>
+            <Element name="tags">
+              <Row gutter={{ sm: 0, md: 4, xl: 8 }}>{tags}</Row>
+            </Element>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Input
-              placeholder="Search..."
-              size="large"
-              prefix={<AiOutlineSearch color="rgba(255, 255, 255, 0.8)" size="20px"/>}
-              value={this.state.search}
-              className="searchInput"
-              onChange={this.handleChange}
-            />
-          </div>
-          <Element name="tags">
-            <Row gutter={{ sm: 0, md: 4, xl: 8 }}>{tags}</Row>
-          </Element>
         </div>
+        <Footer />
       </div>
     );
   }

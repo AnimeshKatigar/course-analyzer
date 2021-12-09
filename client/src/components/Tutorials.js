@@ -241,18 +241,22 @@ class Tutorials extends React.Component {
             <Col span={24}>
               <TutorialCard
                 tutorial={recommended}
+                compare={true}
                 recommended={true}
                 addCompare={this.addCompare}
                 removeCompare={this.removeCompare}
                 compareArr={this.state.compare}
+                compareArrLength={this.state.compare.length}
               />
             </Col>
             {filterData.map((tutorial, i) => (
               <Col span={24} key={i}>
                 <TutorialCard
+                  compare={true}
                   tutorial={tutorial}
                   addCompare={this.addCompare}
                   removeCompare={this.removeCompare}
+                  compareArrLength={this.state.compare.length}
                   compareArr={this.state.compare}
                 />
               </Col>
@@ -263,7 +267,7 @@ class Tutorials extends React.Component {
     }
     return (
       <div>
-        <div className="tutorials-by-tag">
+        <div className="tutorials-by-tag" style={{ paddingBottom: "80px" }}>
           <h1 className="tutorial-title">
             <span
               style={{
@@ -409,12 +413,12 @@ class Tutorials extends React.Component {
             </Col>
             <Col xs={24} lg={16}>
               <Row>{tutorials}</Row>
-              {console.log("Compare", this.state.compare)}
             </Col>
           </Row>
         </div>
         <SwipeableBottomSheet
           overflowHeight={64}
+          marginTop={50}
           open={this.state.open}
           onChange={this.openBottomSheet.bind(this)}
         >
@@ -425,17 +429,19 @@ class Tutorials extends React.Component {
               boxSizing: "border-box",
               color: "white",
               minHeight: "64px",
-              // width:"86%",
-              // margin:"0px auto",
-              fontSize: "24px",
+              fontSize: "18px",
               display: "flex",
               justifyContent: "space-around",
               textAlign: "center",
               flex: 1,
             }}
           >
-            {this.state.compare.length} courses selected
-            <Button onClick={this.toggleBottomSheet.bind(this)} type="primary">
+            {this.state.compare.length}/4 courses selected
+            <Button
+              onClick={this.toggleBottomSheet.bind(this)}
+              type="primary"
+              disabled={this.state.compare.length < 2 ? true : false}
+            >
               {this.state.open ? "Close" : "Compare"}
             </Button>
           </div>
@@ -444,8 +450,6 @@ class Tutorials extends React.Component {
               padding: "10px",
               boxSizing: "border-box",
               backgroundColor: "white",
-              // width:"86%",
-              // margin:"0px auto",
               fontSize: "18px",
               minHeight: "50vh",
             }}
@@ -456,12 +460,51 @@ class Tutorials extends React.Component {
             aliquip ex ea commodo consequat. Duis aute irure dolor in
             reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
+            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
           </div>
         </SwipeableBottomSheet>
-        {/* <div className="compare-details">
-
-        </div> */}
       </div>
     );
   }
