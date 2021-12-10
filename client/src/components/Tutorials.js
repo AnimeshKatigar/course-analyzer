@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { getTag } from "../actions/tagActions";
 import { getTutorialsByTag } from "../actions/tutorialActions";
 import { AiOutlineSearch } from "react-icons/ai";
-
+import { Table, Tag, Space } from 'antd';
 import TutorialCard from "./TutorialCard";
 import Loader from "./Loader";
 import CountrySelector from "./CountrySelector.js";
@@ -125,6 +125,75 @@ class Tutorials extends React.Component {
   }
   render() {
     let tutorials;
+    const columns = [
+      {
+        title: 'Name',
+        dataIndex: 'title',
+        key: 'title',
+        // fixed:"left"
+        // render: text => <a>{text}</a>,
+      },
+      {
+        title: 'Description',
+        dataIndex: 'description',
+        key: 'description',
+      },
+      {
+        title: 'Educator',
+        dataIndex: 'educator',
+        key: 'educator',
+      },
+      {
+        title: 'Platform',
+        dataIndex: 'platform',
+        key: 'platform',
+      },
+      {
+        title: 'Level',
+        dataIndex: 'platform',
+        key: 'platform',
+      },
+      {
+        title: 'Tags',
+        key: 'tags',
+        dataIndex: 'tags',
+        render: tags => (
+          <div>
+            {tags.map(tag => {
+              return (
+                <Tag color="geekblue" key={tag}>
+                  {tag.toUpperCase()}
+                </Tag>
+              );
+            })}
+          </div>
+        ),
+      },
+    ];
+    
+    const data = [
+      {
+        key: '1',
+        name: 'John Brown',
+        age: 32,
+        address: 'New York No. 1 Lake Park',
+        tags: ['nice', 'developer'],
+      },
+      {
+        key: '2',
+        name: 'Jim Green',
+        age: 42,
+        address: 'London No. 1 Lake Park',
+        tags: ['loser'],
+      },
+      {
+        key: '3',
+        name: 'Joe Black',
+        age: 32,
+        address: 'Sidney No. 1 Lake Park',
+        tags: ['cool', 'teacher'],
+      },
+    ];
     let recommended;
     if (this.props.tutorial.loading || !this.props.tutorial.tutorials) {
       tutorials = <Loader />;
@@ -436,6 +505,7 @@ class Tutorials extends React.Component {
               flex: 1,
             }}
           >
+            {console.log(this.state.compare)}
             {this.state.compare.length}/4 courses selected
             <Button
               onClick={this.toggleBottomSheet.bind(this)}
@@ -454,55 +524,8 @@ class Tutorials extends React.Component {
               minHeight: "50vh",
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+            <Table columns={columns} dataSource={this.state.compare} pagination={false}/>
+            {/* <div className="gcse-search" data-queryParameterName="ReactJ"></div> */}
           </div>
         </SwipeableBottomSheet>
       </div>

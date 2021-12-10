@@ -79,6 +79,23 @@
   /* box-shadow:rgba(98, 0, 148, 0.7) 30px 0px 30px !important; */
 }
 
+/* .ant-table table{
+  display: flex !important;
+  flex-direction: row !important;
+}
+.ant-table-thead{
+  display: flex !important;
+}
+
+.ant-table-thead > tr, .ant-table-tbody > tr{
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.ant-table-tbody{
+  display: flex !important;
+} */
+
 @media screen and (max-width: 992px) {
   .filters {
     padding: 15px;
