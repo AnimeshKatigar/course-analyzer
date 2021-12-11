@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { getTag } from "../actions/tagActions";
 import { getTutorialsByTag } from "../actions/tutorialActions";
 import { AiOutlineSearch } from "react-icons/ai";
-import { Table, Tag, Space } from 'antd';
+import { Table, Tag, Space } from "antd";
 import TutorialCard from "./TutorialCard";
 import Loader from "./Loader";
 import CountrySelector from "./CountrySelector.js";
@@ -127,39 +127,117 @@ class Tutorials extends React.Component {
     let tutorials;
     const columns = [
       {
-        title: 'Name',
-        dataIndex: 'title',
-        key: 'title',
-        // fixed:"left"
+        title: "Name",
+        dataIndex: "title",
+        key: "title",
+        fixed: "left",
+        width: 200,
         // render: text => <a>{text}</a>,
       },
       {
-        title: 'Description',
-        dataIndex: 'description',
-        key: 'description',
+        title: "Description",
+        dataIndex: "description",
+        width: 300,
+        key: "description",
       },
       {
-        title: 'Educator',
-        dataIndex: 'educator',
-        key: 'educator',
+        title: "Avg. Rating",
+        dataIndex: "rating",
+        width: 80,
+        key: "rating",
+        render: (rating) => {
+          return rating ? (
+            <div>
+              {rating}
+              <span className="fa fa-star fa-1x medium rating-span"></span>
+            </div>
+          ) : (
+            <div>-</div>
+          );
+        },
       },
       {
-        title: 'Platform',
-        dataIndex: 'platform',
-        key: 'platform',
+        title: "Platform",
+        dataIndex: "platform",
+        key: "platform",
+        width: 120,
       },
       {
-        title: 'Level',
-        dataIndex: 'platform',
-        key: 'platform',
+        title: "Cost",
+        dataIndex: "type",
+        width: 70,
+        key: "type",
       },
       {
-        title: 'Tags',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: tags => (
+        title: "Language",
+        dataIndex: "language",
+        width: 120,
+        key: "language",
+        render: (lang) => {
+          let mapper = {
+            US: "English",
+            FR: "French",
+            DE: "German",
+            IT: "Italian",
+            BR: "Brazilian",
+            IN: "Hindi",
+            CN: "Chinese",
+            TR: "Turkey",
+            KR: "Korean",
+            ES: "Spanish",
+            CL: "Chilean",
+            JP: "Japanese",
+            MX: "Mexican",
+            PT: "Portuguese",
+            PL: "Polish",
+            RO: "Romansh",
+            NL: "Dutch",
+          };
+          const languageff = mapper[lang.toUpperCase()];
+          return (
+            <span>
+              {languageff}
+              <span
+                className={`flag-icon flag-icon-${lang}`}
+                style={{ marginLeft: 5 }}
+              ></span>
+            </span>
+          );
+        },
+      },
+      {
+        title: "Educator",
+        dataIndex: "educator",
+        key: "educator",
+        width: 150,
+      },
+      {
+        title: "Level",
+        dataIndex: "skillLevel",
+        width: 150,
+        key: "skillLevel",
+      },
+      {
+        title: "Total Reviews",
+        dataIndex: "reviews",
+        width: 100,
+        key: "reviews",
+        render: (rev) => <div>{rev.length}</div>,
+      },
+      {
+        title: "Total Upvotes",
+        width: 100,
+        dataIndex: "upvotes",
+        key: "upvotes",
+        render: (upv) => <div>{upv.length}</div>,
+      },
+      {
+        title: "Tags",
+        key: "tags",
+        dataIndex: "tags",
+        render: (tags) => (
           <div>
-            {tags.map(tag => {
+            {tags.map((tag) => {
               return (
                 <Tag color="geekblue" key={tag}>
                   {tag.toUpperCase()}
@@ -169,29 +247,42 @@ class Tutorials extends React.Component {
           </div>
         ),
       },
+      {
+        title: "Tutorial",
+        dataIndex: "link",
+        key: "link",
+        fixed: "right",
+        render: (link) => (
+          <Button type="secondary">
+            <a href={link} target="_blank">
+              Visit Tutorial
+            </a>
+          </Button>
+        ),
+      },
     ];
-    
+
     const data = [
       {
-        key: '1',
-        name: 'John Brown',
+        key: "1",
+        name: "John Brown",
         age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
+        address: "New York No. 1 Lake Park",
+        tags: ["nice", "developer"],
       },
       {
-        key: '2',
-        name: 'Jim Green',
+        key: "2",
+        name: "Jim Green",
         age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
+        address: "London No. 1 Lake Park",
+        tags: ["loser"],
       },
       {
-        key: '3',
-        name: 'Joe Black',
+        key: "3",
+        name: "Joe Black",
         age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
+        address: "Sidney No. 1 Lake Park",
+        tags: ["cool", "teacher"],
       },
     ];
     let recommended;
@@ -524,7 +615,12 @@ class Tutorials extends React.Component {
               minHeight: "50vh",
             }}
           >
-            <Table columns={columns} dataSource={this.state.compare} pagination={false}/>
+            <Table
+              columns={columns}
+              dataSource={this.state.compare}
+              scroll={{ x: 1300 }}
+              pagination={false}
+            />
             {/* <div className="gcse-search" data-queryParameterName="ReactJ"></div> */}
           </div>
         </SwipeableBottomSheet>
