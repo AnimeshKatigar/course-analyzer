@@ -137,3 +137,9 @@
     text-align: left;
   }
 }
+
+@media screen and (min-width: 1800px) {
+  .ant-table-body{
+    overflow-x: auto !important;
+  }    
+}

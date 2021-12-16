@@ -251,7 +251,7 @@ class Tutorials extends React.Component {
         title: "Tutorial",
         dataIndex: "link",
         key: "link",
-        fixed: "right",
+        // fixed: "right",
         render: (link) => (
           <Button type="secondary">
             <a href={link} target="_blank">

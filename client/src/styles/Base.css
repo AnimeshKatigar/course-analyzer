@@ -83,6 +83,11 @@ input:focus, input:checked, input:active, input:focus-within, input:visited, inp
   );
 }
 
+.ant-tag{
+  background-color: rgb(18, 145, 123);
+  font-family: "Poppins", sans-serif !important;
+}
+
 @media screen and (max-width: 350px) {
   .ant-btn{
     padding: 0px 10px;
