@@ -84,8 +84,14 @@ input:focus, input:checked, input:active, input:focus-within, input:visited, inp
 }
 
 .ant-tag{
-  background-color: rgb(18, 145, 123);
+  background: rgb(18, 145, 123);
   font-family: "Poppins", sans-serif !important;
+}
+
+.ant-tag-geekblue {
+  color: #2f54eb !important;
+  background: #f0f5ff !important;
+  border-color: #adc6ff !important;
 }
 
 @media screen and (max-width: 350px) {
