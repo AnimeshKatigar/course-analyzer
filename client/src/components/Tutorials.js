@@ -13,6 +13,7 @@ import CountrySelector from "./CountrySelector.js";
 import SwipeableBottomSheet from "react-swipeable-bottom-sheet";
 import "../styles/Tutorials.css";
 import codeImg from "../img/laptop-code-solid.svg";
+import { recommendReviewHelper } from "../utils/recommendation";
 
 class Tutorials extends React.Component {
   constructor(props) {
@@ -262,45 +263,22 @@ class Tutorials extends React.Component {
       },
     ];
 
-    const data = [
-      {
-        key: "1",
-        name: "John Brown",
-        age: 32,
-        address: "New York No. 1 Lake Park",
-        tags: ["nice", "developer"],
-      },
-      {
-        key: "2",
-        name: "Jim Green",
-        age: 42,
-        address: "London No. 1 Lake Park",
-        tags: ["loser"],
-      },
-      {
-        key: "3",
-        name: "Joe Black",
-        age: 32,
-        address: "Sidney No. 1 Lake Park",
-        tags: ["cool", "teacher"],
-      },
-    ];
     let recommended;
     if (this.props.tutorial.loading || !this.props.tutorial.tutorials) {
       tutorials = <Loader />;
     } else {
       const mainTutorials = this.props.tutorial.tutorials;
-      // recommended = this.props.tutorial.tutorials.reduce((prev, current) =>
-      //   (prev.rating ? prev.rating : 0) > (current.rating ? current.rating : 0)
-      //     ? prev
-      //     : current
-      // );
+
       recommended = this.props.tutorial.tutorials.reduce(function (
         prev,
         current
       ) {
         let prevLength = prev.upvotes ? prev.upvotes.length : 0;
         let currLength = current.upvotes ? current.upvotes.length : 0;
+        let prevReviews = recommendReviewHelper(prev.reviews);
+        let currReviews = recommendReviewHelper(current.reviews);
+        // console.log("revReviews",currReviews)
+        // if (!prev.reviews || prev.reviews.length === 0) {
 
         return (prev.rating ? prev.rating + prevLength : 0 + prevLength) >
           (current.rating ? current.rating + currLength : 0 + currLength)
