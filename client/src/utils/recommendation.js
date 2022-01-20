@@ -110,3 +110,18 @@ export const recommendReviewHelper = (reviews) => {
   }
   return points;
 };
+
+
+export const tagsHelper=(tags)=>{
+  var total=tags;
+  if (tags>9){
+    total=total*2
+  }
+  if(tags>6){
+    total=total + 10
+  }
+  if(tags>3){
+    total=total+5
+  }
+  return total
+}

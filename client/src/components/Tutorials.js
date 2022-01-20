@@ -13,7 +13,7 @@ import CountrySelector from "./CountrySelector.js";
 import SwipeableBottomSheet from "react-swipeable-bottom-sheet";
 import "../styles/Tutorials.css";
 import codeImg from "../img/laptop-code-solid.svg";
-import { recommendReviewHelper } from "../utils/recommendation";
+import { recommendReviewHelper, tagsHelper } from "../utils/recommendation";
 
 class Tutorials extends React.Component {
   constructor(props) {
@@ -277,6 +277,8 @@ class Tutorials extends React.Component {
         let currLength = current.upvotes ? current.upvotes.length : 0;
         let prevReviews = recommendReviewHelper(prev.reviews);
         let currReviews = recommendReviewHelper(current.reviews);
+        let prevTags=tagsHelper(prev.tags.length)
+        let currTags=tagsHelper(current.tags.length)
         // console.log("revReviews",currReviews)
         // if (!prev.reviews || prev.reviews.length === 0) {
 
