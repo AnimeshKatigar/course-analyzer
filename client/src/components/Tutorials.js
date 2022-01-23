@@ -273,17 +273,42 @@ class Tutorials extends React.Component {
         prev,
         current
       ) {
-        let prevLength = prev.upvotes ? prev.upvotes.length : 0;
+        let prevTB = 0;
+        let currTB = 0;
+        
+        // upvotes
+        let prevLength = prev.upvotes ? prev.upvotes.length : 0; 
         let currLength = current.upvotes ? current.upvotes.length : 0;
+
+        // rating
+        let prevRating=prev.rating ? prev.rating : 0;
+        let currRating=current.rating ? current.rating : 0;
+
+        // reviews
         let prevReviews = recommendReviewHelper(prev.reviews);
         let currReviews = recommendReviewHelper(current.reviews);
-        let prevTags=tagsHelper(prev.tags.length)
-        let currTags=tagsHelper(current.tags.length)
-        // console.log("revReviews",currReviews)
-        // if (!prev.reviews || prev.reviews.length === 0) {
 
-        return (prev.rating ? prev.rating + prevLength : 0 + prevLength) >
-          (current.rating ? current.rating + currLength : 0 + currLength)
+        // tags
+        let prevTags=prev.tags ? tagsHelper(prev.tags.length) : 0
+        let currTags=current.tags ? tagsHelper(current.tags.length) : 0
+
+
+        // Total score variables
+        let prevTotalScore = prevRating + prevLength + prevReviews + prevTags;
+        let currTotalScore = currRating + currLength + currReviews + currTags;
+
+        // tiebreaker
+        if (prevTotalScore == currTotalScore){
+          if (prev.type == "Free" && current.type == "Paid"){
+            prevTB=prevTB+10;
+          }
+          if (prev.type == "Paid" && current.type == "Free"){
+            currTB=currTB+10;
+          }
+        }
+
+        return (prevTotalScore + prevTB) >
+          (currTotalScore + currTB)
           ? prev
           : current;
       },
