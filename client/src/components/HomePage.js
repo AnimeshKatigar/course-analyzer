@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Header from "./Header";
 import TagCard from "./TagCard";
 import Loader from "./Loader";
+import axios from "axios";
 
 import { AiOutlineSearch } from "react-icons/ai";
 
@@ -21,6 +22,8 @@ class HomePage extends React.Component {
 
     this.state = {
       search: "",
+      data: [],
+      halfData: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,6 +35,19 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     this.props.getTags();
+    axios
+      .get(
+        "https://newsapi.org/v2/everything?language=en&q=online-courses&apiKey=0b329b6724664cf59ecdf60382bb3665"
+        // "https://newsapi.org/v2/top-headlines?language=en&category=technology&apiKey=0b329b6724664cf59ecdf60382bb3665"
+        // "https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=0b329b6724664cf59ecdf60382bb3665"
+      )
+      .then((res) => {
+        let data = res.data.articles;
+        this.setState({ data });
+        // let halfData=data.articles.slice(2)
+        // this.setState({halfData});
+        console.log("res", res);
+      });
 
     if (this.props.auth.newSignUp) {
       message.success("Registration Successful, Sign In to continue");
@@ -77,6 +93,41 @@ class HomePage extends React.Component {
         <div className="home-page">
           <Header />
           <div className="homepage-tags">
+            <div className="homepage-tags-header">
+              <span className="TutsSpan">Latest News</span>
+            </div>
+            {this.state.data.map((data, i) => {
+              if (i < 3)
+                return (
+                  <div className="outer-news-div">
+                    <div
+                      onClick={() => {
+                        window.open(data.url);
+                      }}
+                      style={{
+                        height: "250px",
+                        // width: "28%",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                        cursor: "pointer",
+                        backgroundImage: `url(${
+                          data.urlToImage
+                            ? data.urlToImage
+                            : "https://techiesms.com/wp-content/uploads/2018/02/Tech-News.jpg"
+                        })`,
+                        marginBottom: 30,
+                      }}
+                      className="news-main-div"
+                    >
+                      <div className="news-title-div">
+                        {data.title} - {data.source.name}
+                      </div>
+                      {/* <img src={data.urlToImage} /> */}
+                    </div>
+                  </div>
+                );
+            })}
             <div className="homepage-tags-header">
               <span className="TutsSpan">Domains</span>
             </div>
