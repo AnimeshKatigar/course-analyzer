@@ -93,6 +93,29 @@ class HomePage extends React.Component {
         <div className="home-page">
           <Header />
           <div className="homepage-tags">
+            
+            <div className="homepage-tags-header">
+              <span className="TutsSpan">Domains</span>
+            </div>
+            <Voice/>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Input
+                placeholder="Search..."
+                size="large"
+                prefix={
+                  <AiOutlineSearch
+                    color="rgba(255, 255, 255, 0.8)"
+                    size="20px"
+                  />
+                }
+                value={this.state.search}
+                className="searchInput"
+                onChange={this.handleChange}
+              />
+            </div>
+            <Element name="tags">
+              <Row gutter={{ sm: 0, md: 4, xl: 8 }}>{tags}</Row>
+            </Element>
             <div className="homepage-tags-header">
               <span className="TutsSpan">Latest News</span>
             </div>
@@ -114,7 +137,7 @@ class HomePage extends React.Component {
                         backgroundImage: `url(${
                           data.urlToImage
                             ? data.urlToImage
-                            : "https://techiesms.com/wp-content/uploads/2018/02/Tech-News.jpg"
+                            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgu8ZBF1KkGV_ZgL38TodoXzuNhxTnTI9s9w&usqp=CAU"
                         })`,
                         marginBottom: 30,
                       }}
@@ -128,27 +151,6 @@ class HomePage extends React.Component {
                   </div>
                 );
             })}
-            <div className="homepage-tags-header">
-              <span className="TutsSpan">Domains</span>
-            </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Input
-                placeholder="Search..."
-                size="large"
-                prefix={
-                  <AiOutlineSearch
-                    color="rgba(255, 255, 255, 0.8)"
-                    size="20px"
-                  />
-                }
-                value={this.state.search}
-                className="searchInput"
-                onChange={this.handleChange}
-              />
-            </div>
-            <Element name="tags">
-              <Row gutter={{ sm: 0, md: 4, xl: 8 }}>{tags}</Row>
-            </Element>
           </div>
         </div>
         <Footer />
