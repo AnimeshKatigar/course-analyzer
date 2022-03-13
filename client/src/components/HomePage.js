@@ -97,7 +97,6 @@ class HomePage extends React.Component {
             <div className="homepage-tags-header">
               <span className="TutsSpan">Domains</span>
             </div>
-            <Voice/>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Input
                 placeholder="Search..."
