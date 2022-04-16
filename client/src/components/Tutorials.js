@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Checkbox, Input, Button } from "antd";
+import { Row, Col, Checkbox, Input, Button, Tooltip } from "antd";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -275,40 +275,38 @@ class Tutorials extends React.Component {
       ) {
         let prevTB = 0;
         let currTB = 0;
-        
+
         // upvotes
-        let prevLength = prev.upvotes ? prev.upvotes.length : 0; 
+        let prevLength = prev.upvotes ? prev.upvotes.length : 0;
         let currLength = current.upvotes ? current.upvotes.length : 0;
 
         // rating
-        let prevRating=prev.rating ? prev.rating : 0;
-        let currRating=current.rating ? current.rating : 0;
+        let prevRating = prev.rating ? prev.rating : 0;
+        let currRating = current.rating ? current.rating : 0;
 
         // reviews
         let prevReviews = recommendReviewHelper(prev.reviews);
         let currReviews = recommendReviewHelper(current.reviews);
 
         // tags
-        let prevTags=prev.tags ? tagsHelper(prev.tags.length) : 0
-        let currTags=current.tags ? tagsHelper(current.tags.length) : 0
-
+        let prevTags = prev.tags ? tagsHelper(prev.tags.length) : 0;
+        let currTags = current.tags ? tagsHelper(current.tags.length) : 0;
 
         // Total score variables
         let prevTotalScore = prevRating + prevLength + prevReviews + prevTags;
         let currTotalScore = currRating + currLength + currReviews + currTags;
 
         // tiebreaker
-        if (prevTotalScore == currTotalScore){
-          if (prev.type == "Free" && current.type == "Paid"){
-            prevTB=prevTB+10;
+        if (prevTotalScore == currTotalScore) {
+          if (prev.type == "Free" && current.type == "Paid") {
+            prevTB = prevTB + 10;
           }
-          if (prev.type == "Paid" && current.type == "Free"){
-            currTB=currTB+10;
+          if (prev.type == "Paid" && current.type == "Free") {
+            currTB = currTB + 10;
           }
         }
 
-        return (prevTotalScore + prevTB) >
-          (currTotalScore + currTB)
+        return prevTotalScore + prevTB > currTotalScore + currTB
           ? prev
           : current;
       },
@@ -432,6 +430,7 @@ class Tutorials extends React.Component {
     }
     return (
       <div>
+        {console.log("match",this.props.match)}
         <div className="tutorials-by-tag" style={{ paddingBottom: "80px" }}>
           <h1 className="tutorial-title">
             <span
@@ -603,13 +602,23 @@ class Tutorials extends React.Component {
           >
             {console.log(this.state.compare)}
             {this.state.compare.length}/4 courses selected
-            <Button
-              onClick={this.toggleBottomSheet.bind(this)}
-              type="primary"
-              disabled={this.state.compare.length < 2 ? true : false}
+            <Tooltip
+              title={
+                this.state.compare.length < 2
+                  ? "Minimum 2 courses should be selected"
+                  : ""
+              }
+              zIndex={99999}
+              placement='topLeft'
             >
-              {this.state.open ? "Close" : "Compare"}
-            </Button>
+              <Button
+                onClick={this.toggleBottomSheet.bind(this)}
+                type="primary"
+                disabled={this.state.compare.length < 2 ? true : false}
+              >
+                {this.state.open ? "Close" : "Compare"}
+              </Button>
+            </Tooltip>
           </div>
           <div
             style={{

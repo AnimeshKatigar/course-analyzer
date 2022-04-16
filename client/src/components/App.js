@@ -17,7 +17,7 @@ import TutorialForm from './TutorialForm';
 import Tutorials from './Tutorials';
 import Tutorial from './Tutorial';
 import About from './About';
-import Footer from './Footer';
+import News from './News';
 
 import '../styles/Base.css';
 
@@ -61,6 +61,7 @@ class App extends React.Component {
 								<Route exact path="/tutorials/tag/:tag" component={Tutorials} />
 								<Route exact path="/tutorials/:tutorial" component={Tutorial} />
 								<Route exact path="/about" component={About} />
+								<Route exact path="/news" component={News}/>
 							</Switch>
 						</ScrollToTop>
 						{/* <Footer /> */}

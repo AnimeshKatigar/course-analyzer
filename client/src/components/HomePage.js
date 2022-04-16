@@ -93,7 +93,6 @@ class HomePage extends React.Component {
         <div className="home-page">
           <Header />
           <div className="homepage-tags">
-            
             <div className="homepage-tags-header">
               <span className="TutsSpan">Domains</span>
             </div>
@@ -115,7 +114,7 @@ class HomePage extends React.Component {
             <Element name="tags">
               <Row gutter={{ sm: 0, md: 4, xl: 8 }}>{tags}</Row>
             </Element>
-            <div className="homepage-tags-header">
+            <div className="homepage-tags-header" style={{ marginTop:30}}>
               <span className="TutsSpan">Latest News</span>
             </div>
             {this.state.data.map((data, i) => {
@@ -150,6 +149,12 @@ class HomePage extends React.Component {
                   </div>
                 );
             })}
+            <div
+             onClick={()=>this.props.history.push({'pathname':'/news','state':this.state.data})}
+             style={{ textDecoration: "underline", cursor: "pointer", display: "flex", justifyContent: "center", color:'white',fontSize:18}}>
+              {" "}
+              See More...{" "}
+            </div>
           </div>
         </div>
         <Footer />
