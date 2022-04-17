@@ -6,7 +6,7 @@
 
 Recently the number of online educational sites have grown in huge numbers and so did their content. While each one of them claim to provide the best content it is difficult or rather tedious for someone to compare the courses of a specific topic offered by each one of them and choose the best for themselves.
 Course Catalogue does all the tedious job and brings all the significant details about online courses / tutorials offered by various educational sites at a single platform and all one has to do is choose the most suitable one for himself / herself and enjoy learning.
-
+<!-- 
 ### Development
 
 -   Install Backend Dependencies.
@@ -57,7 +57,7 @@ npm test
 npm run test:watch
 ```
 
----
+--- -->
 
 ### Technologies Used
 
@@ -79,7 +79,7 @@ npm run test:watch
 -   [Redux](https://redux.js.org)
 
 ---
-
+<!-- 
 ### Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -97,4 +97,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
-Found a bug? Create an [issue](https://github.com/PiyushPawar17/course-catalogue/issues).
+Found a bug? Create an [issue](https://github.com/PiyushPawar17/course-catalogue/issues). -->
