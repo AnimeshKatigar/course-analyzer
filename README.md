@@ -1,6 +1,6 @@
 # Course Catalogue
 
-![Logo](./client/src/img/logo_poster.png)
+![Logo](./client/src/img/logoposter.png)
 
 ### About
 
