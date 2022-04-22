@@ -78,23 +78,3 @@ npm run test:watch
 
 -   [Redux](https://redux.js.org)
 
----
-<!-- 
-### Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-### Team Members
-
--   [Ishita Das](https://github.com/ishita27)
--   [Mohak Khare](https://github.com/violentdelight)
--   [Avdhesh Yadav](https://github.com/avi-spc)
--   [Abhyudai Bisht](https://github.com/Midnight-28)
--   [Saurabh Pandit](https://github.com/sp427661)
--   and [Me](https://github.com/PiyushPawar17) :grin:
-
----
-
-Found a bug? Create an [issue](https://github.com/PiyushPawar17/course-catalogue/issues). -->
