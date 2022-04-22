@@ -1,4 +1,4 @@
-# Course Catalogue
+# Course Analyzer
 
 ![Logo](./client/src/img/logoposter.png)
 
